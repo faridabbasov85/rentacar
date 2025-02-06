@@ -7,6 +7,7 @@
     align-items: center;
     height: 70vh;
     font-family: "Nunito", sans-serif;
+    background-color: #E5EAF2;
 }
 
 .oneText>span {
@@ -69,11 +70,12 @@
 
 
     .oneText>span {
-        font-size: 50px;
+        font-size: 35px;
     }
 
     .Container {
         display: flex;
+        
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
@@ -82,12 +84,14 @@
     .twoText {
         display: flex;
         flex-wrap: wrap;
-        gap: 30px;
+        gap: 20px;
         width: 100%;
     }
 
     .card {
-        padding: 50px;
+        flex: 1 1 calc(33.33% - 20px); /* 3 kart yan-yana yerləşir (33% - boşluq) */
+        box-sizing: border-box; /* Padding-in ölçüyə daxil olması üçün */
+        padding: 16px;
     }
 }
 
@@ -118,16 +122,16 @@
     }
 
     .card>a {
-        font-size: 25px;
+        font-size: 18px;
     }
 
     .cardText>h2 {
-        font-size: 17px;
+        font-size: 15px;
         color: #003271;
     }
 
     .cardText>p {
-        font-size: 12px;
+        font-size: 10px;
         color: gray;
     }
 

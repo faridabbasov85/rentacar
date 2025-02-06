@@ -12,7 +12,9 @@
     align-items: center;
     padding: 0 10px;
     height: 80px;
-    background-color: #F2F6FE;
+    background-color: #F1F6FD;
+    position: fixed;
+    width: 100%;
 }
 
 .navLogo>img {
@@ -29,6 +31,11 @@
     color: #003271;
     text-decoration: none;
     font-size: 15px;
+   transition: all ease-in-out 0.5s;
+}
+
+.navbar > ul > a:hover {
+    color: #32A4F6;
 }
  
 .navCall {
@@ -50,11 +57,18 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
+    padding-left: 40px;
+    padding-top: 30px;
 }
 
 .menuBar>ul>a {
     color: #003271;
     text-decoration: none;
+    transition: all ease-in-out 0.5s;
+}
+
+.menuBar > ul > a:hover {
+    color: #32A4F6;
 }
 
 .menu button svg {

@@ -5,6 +5,7 @@
 }
 .Contain {
     padding: 0 30px;
+    background-color: #E5EAF2;
 }
 .Contain > img {
    width: 100%;

@@ -13,6 +13,10 @@ const Header = () => {
     navigation("/")
   }
 
+  const goServices = () => {
+    navigation("/services")
+  }
+
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -25,7 +29,7 @@ const Header = () => {
       <div className={styles.navbar}>
         <ul>
           <a href="">Avto Park</a>
-          <a href="">Xidmətlər</a>
+          <a onClick={goServices} href="">Xidmətlər</a>
           <a href="">İcarə şərtləri</a>
           <a href="">Sual-cavab</a>
           <a href="">Haqqımızda</a>
@@ -47,7 +51,7 @@ const Header = () => {
           <div className={styles.menuBar}>
             <ul>
               <a href="">Avto Park</a>
-              <a href="">Xidmətlər</a>
+              <a onClick={goServices} href="">Xidmətlər</a>
               <a href="">İcarə şərtləri</a>
               <a href="">Sual-cavab</a>
               <a href="">Haqqımızda</a>

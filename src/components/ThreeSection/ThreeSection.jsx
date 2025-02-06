@@ -27,7 +27,7 @@ const ThreeSection = () => {
           <a className={styles.contract} href="">
             <RiContractFill />
           </a>
-          <div  className={styles.cardText}>
+          <div className={styles.cardText}>
             <h2>Müqavilə imzalayın</h2>
             <p>Sənədləri təqdim edərək müqavilə imzalayın.</p>
           </div>
@@ -36,7 +36,7 @@ const ThreeSection = () => {
           <a className={styles.payment} href="">
             <FaRegMoneyBillAlt />
           </a>
-          <div  className={styles.cardText}>
+          <div className={styles.cardText}>
             <h2>Ödəniş edin</h2>
             <p>Ödəniş etdikdən sonra atvomobili təhvil alın</p>
           </div>
