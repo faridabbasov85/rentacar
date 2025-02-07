@@ -16,6 +16,17 @@ const Footer = () => {
   const goServices = () =>{
     navigation('/services')
   }
+
+  const goRules = () => {
+    navigation("/rules")
+  }
+
+  const goAbout = () => {
+    navigation("/aboutus")
+  }
+  const goFaq = () => {
+    navigation("/faq")
+  }
   return (
     <div className={styles.Container}>
       <div className={styles.OneFoot}>
@@ -28,14 +39,14 @@ const Footer = () => {
 
         <div className={styles.company}>
           <h4>Şirkət</h4>
-          <a href="">Şirkət haqqında</a>
+          <a onClick={goAbout} href="">Şirkət haqqında</a>
           <a onClick={goServices} href="">Xidmətlər</a>
-          <a href="">İcarə şərtləri</a>
+          <a onClick={goRules} href="">İcarə şərtləri</a>
         </div>
         <div className={styles.support}>
           <h4>Dəstək</h4>
           <a href="">Məlumat mərkəzi</a>
-          <a href="">Sual-cavab</a>
+          <a onClick={goFaq} href="">Sual-cavab</a>
           <a href="">Əlaqə</a>
         </div>
       </div>

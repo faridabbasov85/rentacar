@@ -17,6 +17,17 @@ const Header = () => {
     navigation("/services")
   }
 
+  const goRules = () => {
+    navigation("/rules")
+  }
+  
+  const goAbout = () => {
+    navigation("/aboutus")
+  }
+  const goFaq = () => {
+    navigation("/faq")
+  }
+
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -30,9 +41,9 @@ const Header = () => {
         <ul>
           <a href="">Avto Park</a>
           <a onClick={goServices} href="">Xidmətlər</a>
-          <a href="">İcarə şərtləri</a>
-          <a href="">Sual-cavab</a>
-          <a href="">Haqqımızda</a>
+          <a onClick={goRules} href="">İcarə şərtləri</a>
+          <a onClick={goFaq} href="">Sual-cavab</a>
+          <a onClick={goAbout} href="">Haqqımızda</a>
           <a href="">Əlaqə</a>
         </ul>
       </div>
@@ -52,9 +63,9 @@ const Header = () => {
             <ul>
               <a href="">Avto Park</a>
               <a onClick={goServices} href="">Xidmətlər</a>
-              <a href="">İcarə şərtləri</a>
-              <a href="">Sual-cavab</a>
-              <a href="">Haqqımızda</a>
+              <a onClick={goRules} href="">İcarə şərtləri</a>
+              <a onClick={goFaq} href="">Sual-cavab</a>
+              <a onClick={goAbout} href="">Haqqımızda</a>
               <a href="">Əlaqə</a>
             </ul>
           </div>

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+
+.Faq {
+    font-family: "Nunito", sans-serif;
+    min-height: 100vh;
+    background-color: #EDF1F6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Sola dayansın */
+    padding: 20px;
+}
+
+.Contain {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 30px; /* Kənarlardan boşluq */
+}
+
+.Head {
+    text-align: left; /* Başlıq sola dayansın */
+    margin-bottom: 30px;
+}
+
+.Head h1 {
+    color: #353551;
+    font-size: 32px;
+    font-weight: 600;
+    text-align: left; /* Başlıq tam solda olsun */
+}
+
+.Head p {
+    color: #555;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left; /* Mətn tam solda olsun */
+}
+
+.Foot {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Sola dayansın */
+    gap: 15px;
+    width: 100%;
+}
+
+/* Sual düyməsi */
+.question {
+    width: 60%;
+    max-width: 700px;
+}
+
+.question button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-family: "Nunito", sans-serif;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease, border 0.3s ease;
+    border: 1px solid #ddd;
+    text-align: left; /* Mətni solda saxla */
+}
+
+.question button:hover {
+    background-color: #f0f8ff;
+    border: 1px solid #0092ec;
+}
+
+.question button span {
+    padding: 7px 15px;
+    background-color: #0092ec;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Cavab */
+.answer {
+    width: 100%;
+    max-width: 700px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: #353551;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    text-align: left; /* Cavab mətni də sola dayansın */
+}
+
+/* Açılan cavab */
+.answer.show {
+    max-height: 200px;
+    padding: 15px 20px;
+}
+
+/* Responsivlik */
+@media (max-width: 768px) {
+    .Contain {
+        margin: 0 15px; /* Mobil üçün azaldılmış margin */
+    }
+
+    .question button {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+
+    .question button span {
+        padding: 5px 12px;
+        font-size: 16px;
+    }
+
+    .answer {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
