@@ -1,0 +1,16 @@
+.contactlinks {
+    padding: 20px;
+  }
+  
+  .contactlink {
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  .contactlink:hover {
+    color: #ff6600;
+  }
+  

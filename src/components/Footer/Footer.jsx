@@ -27,6 +27,10 @@ const Footer = () => {
   const goFaq = () => {
     navigation("/faq")
   }
+
+  const goContact = () => {
+    navigation("/contact")
+  }
   return (
     <div className={styles.Container}>
       <div className={styles.OneFoot}>
@@ -45,9 +49,9 @@ const Footer = () => {
         </div>
         <div className={styles.support}>
           <h4>Dəstək</h4>
-          <a href="">Məlumat mərkəzi</a>
+          {/* <a href="">Məlumat mərkəzi</a> */}
           <a onClick={goFaq} href="">Sual-cavab</a>
-          <a href="">Əlaqə</a>
+          <a onClick={goContact}  href="">Əlaqə</a>
         </div>
       </div>
       <div className={styles.TwoText}>

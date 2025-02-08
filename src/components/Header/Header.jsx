@@ -28,6 +28,10 @@ const Header = () => {
     navigation("/faq")
   }
 
+  const goContact = () => {
+    navigation("/contact")
+  }
+
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -44,7 +48,7 @@ const Header = () => {
           <a onClick={goRules} href="">İcarə şərtləri</a>
           <a onClick={goFaq} href="">Sual-cavab</a>
           <a onClick={goAbout} href="">Haqqımızda</a>
-          <a href="">Əlaqə</a>
+          <a onClick={goContact} href="">Əlaqə</a>
         </ul>
       </div>
       <div className={styles.navCall}>
@@ -66,7 +70,7 @@ const Header = () => {
               <a onClick={goRules} href="">İcarə şərtləri</a>
               <a onClick={goFaq} href="">Sual-cavab</a>
               <a onClick={goAbout} href="">Haqqımızda</a>
-              <a href="">Əlaqə</a>
+              <a onClick={goContact} href="">Əlaqə</a>
             </ul>
           </div>
         </Drawer>
