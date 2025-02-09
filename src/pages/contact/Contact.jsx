@@ -98,7 +98,7 @@ const Contact = () => {
         <div className={styles.map}>
           <h3>Xəritədə biz</h3>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14696.486425398482!2d44.9829917!3d39.5451645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x401501d2aaa68ad3%3A0x3851a7bb76dea322!2s111%20Garage!5e0!3m2!1sen!2s!4v1641300135357!5m2!1sen!2s&zoom=200"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14696.486425398482!2d44.9829917!3d39.5451645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x401501d2aaa68ad3%3A0x3851a7bb76dea322!2s111%20Garage!5e0!3m2!1sen!2s!4v1641300135357!5m2!1sen!2s&zoom=20"
             height="460"
             width="100%"
             loading="lazy"
