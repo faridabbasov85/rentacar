@@ -1,80 +1,108 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Header.module.css";
 import img from "../../pages/photo/logo.png";
 import Drawer from "react-modern-drawer";
 import { BiMenuAltRight } from "react-icons/bi";
+import { FiUser, FiSun, FiMoon, FiHeart } from "react-icons/fi";
 import "react-modern-drawer/dist/index.css";
 import { useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigation = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  const navigation = useNavigate()
-
-  const goHome = () => {
-    navigation("/")
-  }
-
-  const goServices = () => {
-    navigation("/services")
-  }
-
-  const goRules = () => {
-    navigation("/rules")
-  }
-  
-  const goAbout = () => {
-    navigation("/aboutus")
-  }
-  const goFaq = () => {
-    navigation("/faq")
-  }
-
-  const goContact = () => {
-    navigation("/contact")
-  }
-
-  const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark-mode");
+  };
+
   return (
     <div className={styles.Contain}>
       <div className={styles.navLogo}>
-        <img onClick={goHome} src={img} alt="" />
+        <img onClick={() => navigation("/")} src={img} alt="Logo" />
       </div>
+
       <div className={styles.navbar}>
         <ul>
           <a href="">Avto Park</a>
-          <a onClick={goServices} href="">Xidmətlər</a>
-          <a onClick={goRules} href="">İcarə şərtləri</a>
-          <a onClick={goFaq} href="">Sual-cavab</a>
-          <a onClick={goAbout} href="">Haqqımızda</a>
-          <a onClick={goContact} href="">Əlaqə</a>
+          <a onClick={() => navigation("/services")} href="">
+            Xidmətlər
+          </a>
+          <a onClick={() => navigation("/rules")} href="">
+            İcarə şərtləri
+          </a>
+          <a onClick={() => navigation("/faq")} href="">
+            Sual-cavab
+          </a>
+          <a onClick={() => navigation("/aboutus")} href="">
+            Haqqımızda
+          </a>
+          <a onClick={() => navigation("/contact")} href="">
+            Əlaqə
+          </a>
         </ul>
       </div>
-      <div className={styles.navCall}>
-        <div className={styles.call}>
-          <span>Avtomobil lazımdır?</span>
-          <h5>
-            <a href="">+994 70 570 68 68</a>
-          </h5>
+
+      <div className={styles.navActions}>
+        <div
+          className={styles.userIcon}
+          onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+        >
+          <FiUser size={24} />
+          {isUserMenuOpen && (
+            <div className={styles.userMenu}>
+              <a href="/login">Sign in</a>
+              <a href="/register">Sign up</a>
+            </div>
+          )}
         </div>
-      <div className={styles.menu}>
-        <button onClick={toggleDrawer}>
-          <BiMenuAltRight size={35} />
-        </button>
-        <Drawer open={isOpen} onClose={toggleDrawer} direction="right">
-          <div className={styles.menuBar}>
-            <ul>
-              <a href="">Avto Park</a>
-              <a onClick={goServices} href="">Xidmətlər</a>
-              <a onClick={goRules} href="">İcarə şərtləri</a>
-              <a onClick={goFaq} href="">Sual-cavab</a>
-              <a onClick={goAbout} href="">Haqqımızda</a>
-              <a onClick={goContact} href="">Əlaqə</a>
-            </ul>
-          </div>
-        </Drawer>
-      </div>
+
+        <div className={styles.themeToggle} onClick={toggleDarkMode}>
+          {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+        </div>
+
+        <div className={styles.wishlist}>
+          <FiHeart onClick={() => navigation("/wishlist")} size={24} />
+        </div>
+
+        <div className={styles.menu}>
+          <button onClick={toggleDrawer}>
+            <BiMenuAltRight size={35} />
+          </button>
+          <Drawer open={isOpen} onClose={toggleDrawer} direction="right">
+            <div className={styles.Menu}>
+              <div className={styles.themeToggleTwo} onClick={toggleDarkMode}>
+                {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+              </div>
+              <div className={styles.menuBar}>
+                <ul>
+                  <a href="">Avto Park</a>
+                  <a onClick={() => navigation("/services")} href="">
+                    Xidmətlər
+                  </a>
+                  <a onClick={() => navigation("/rules")} href="">
+                    İcarə şərtləri
+                  </a>
+                  <a onClick={() => navigation("/faq")} href="">
+                    Sual-cavab
+                  </a>
+                  <a onClick={() => navigation("/aboutus")} href="">
+                    Haqqımızda
+                  </a>
+                  <a onClick={() => navigation("/contact")} href="">
+                    Əlaqə
+                  </a>
+                </ul>
+              </div>
+            </div>
+          </Drawer>
+        </div>
       </div>
     </div>
   );

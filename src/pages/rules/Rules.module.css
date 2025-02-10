@@ -2,6 +2,7 @@
 
 .Main {
     background-color: #EDF1F6;
+    overflow: hidden;
 }
 
 .Content {
@@ -12,6 +13,7 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;
+    margin-top: 120px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     margin-left: 30px;
     margin-right: 30px;
