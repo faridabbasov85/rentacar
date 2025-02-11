@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Login.module.css";
 import logo from "../photo/logo.png";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigation = useNavigate()
   return (
     <div className={styles.Login}>
       <div className={styles.Left}>
@@ -10,16 +12,17 @@ const Login = () => {
       <div className={styles.Right}>
         <p>SIGN IN</p>
         <form action="">
-          <input placeholder="Email" name="email" required type="email" />
+          <input className={styles.input} placeholder="Email" name="email" required type="email" />
           <input
             placeholder="Password"
             required
             minLength="6"
             type="password"
             name="password"
+            className={styles.input}
           />
-          <button type="submit">Login</button>
-          <a href="">
+          <button className={styles.Button} type="submit">Login</button>
+          <a onClick={() => navigation("/register")} href="">
             Don't have an account? <span>Sing up</span>
           </a>
         </form>
