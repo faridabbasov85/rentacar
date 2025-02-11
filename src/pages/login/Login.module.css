@@ -42,9 +42,12 @@
     border-radius: 10px;
     border: 1px solid transparent;
     padding-left: 10px;
+    background-color: #385c88;
+    color: white;
+    font-weight: 800;
 }
 
-.Button{
+.Button {
     font-size: 32px;
     color: white;
     font-weight: 700;
@@ -55,7 +58,7 @@
     transition: all ease-in-out 0.2s;
 }
 
-.Button:hover{
+.Button:hover {
     color: #001938;
     background-color: white;
 }
@@ -66,12 +69,52 @@
     font-weight: 600;
 }
 
-.Right > form > a{
+.Right>form>a {
     text-decoration: none;
     color: white;
     font-size: 16px;
 }
 
-.Right > form > a > span {
+.Right>form>a>span {
     font-weight: 700;
+}
+
+.back {
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 30px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    position: relative;
+    bottom: 100px;
+
+}
+
+.back > svg {
+    cursor: pointer;
+    display: none;
+}
+
+@media screen and (max-width:767px) {
+
+
+    .Right {
+        width: 100%;
+    }
+
+    .Left {
+        width: 100%;
+        display: none;
+    }
+
+    .Left>img {
+        width: 280px;
+    }
+
+    .back > svg {
+        display: block;
+    }
 }
