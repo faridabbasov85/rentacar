@@ -6,12 +6,16 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { FiUser, FiSun, FiMoon, FiHeart } from "react-icons/fi";
 import "react-modern-drawer/dist/index.css";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../../supabase/supabase";
+import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
   const navigation = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const { user, loading } = useAuth();
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -55,12 +59,18 @@ const Header = () => {
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
         >
           <FiUser size={24} />
-          {isUserMenuOpen && (
+          {isUserMenuOpen && (user ? (
+            <div className={styles.userMenu}>
+              <a onClick={async () => {
+                await supabase.auth.signOut();
+              }}>Sign out</a>
+            </div>
+          ) : (
             <div className={styles.userMenu}>
               <a href="/login">Sign in</a>
               <a href="/register">Sign up</a>
             </div>
-          )}
+          ))}
         </div>
 
         <div className={styles.themeToggle} onClick={toggleDarkMode}>

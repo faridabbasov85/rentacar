@@ -1,39 +1,72 @@
-import React from 'react'
-import styles from './Register.module.css'
-import logo from "../photo/logo.png"
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from "react";
+import styles from "./Register.module.css";
+import logo from "../photo/logo.png";
+import { useNavigate } from "react-router-dom";
 import { RiArrowGoBackLine } from "react-icons/ri";
-const Register = () => {
+import { supabase } from "../../supabase/supabase";
+import { useAuth } from "../../context/AuthContext";
 
-  const navigation = useNavigate()
+const Register = () => {
+  const navigation = useNavigate();
+  const { user, loading } = useAuth();
+
+  if (user) {
+    navigation("/"); 
+    return; 
+  }
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const { data, error } = await supabase.auth.signUp({ email, password });
+
+    if(error) {
+    // error.message; // bu sene mesaji qaytarir yuxarida state yaradarsan asagida <p>{errorText}</p> yazib
+    // gosterersen eger error olsa bax bele
+    }
+  };
+
   return (
     <div className={styles.Register}>
-    <div className={styles.Left}>
-      <img onClick={() => navigation("/")} src={logo} alt="" />
-    </div>
-    <div className={styles.Right}>
-    <div className={styles.back}>
-        <RiArrowGoBackLine onClick={() => navigation("/")} /> 
+      <div className={styles.Left}>
+        <img onClick={() => navigation("/")} src={logo} alt="" />
+      </div>
+      <div className={styles.Right}>
+        <div className={styles.back}>
+          <RiArrowGoBackLine onClick={() => navigation("/")} />
         </div>
-      <p>SIGN UP</p>
-      <form action="">
-        <input className={styles.input} placeholder="Email" name="email" required type="email" />
-        <input
-          placeholder="Password"
-          required
-          minLength="6"
-          type="password"
-          name="password"
-          className={styles.input}
-        />
-        <button className={styles.Button} type="submit">Login</button>
-        <a onClick={() => navigation("/login")} href="">
-          Don't have an account? <span>Sing in</span>
-        </a>
-      </form>
+        <p>SIGN UP</p>
+        <form action="" onSubmit={handleRegister}>
+          <input
+            className={styles.input}
+            placeholder="Email"
+            name="email"
+            required
+            type="email"
+          />
+          <input
+            placeholder="Password"
+            required
+            minLength="6"
+            type="password"
+            name="password"
+            className={styles.input}
+          />
+          <button className={styles.Button} type="submit">
+            Register
+          </button>
+          <a onClick={() => navigation("/login")} href="">
+            Don't have an account? <span>Sign in</span>
+          </a>
+        </form>
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
