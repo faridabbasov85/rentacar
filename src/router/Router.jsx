@@ -9,6 +9,8 @@ import Wishlist from "../pages/wishlist/Wishlist";
 import Contact from "../pages/contact/Contact";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import Adminpanel from "../pages/adminpanel/Adminpanel";
+import Cars from "../pages/cars/Cars";
 const Router = () => {
   return (
     <div>
@@ -23,6 +25,8 @@ const Router = () => {
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/admin-dashboard" element={<Adminpanel/>}/>
+          <Route path="/cars" element={<Cars/>}/>
         </Routes>
       </BrowserRouter>
     </div>

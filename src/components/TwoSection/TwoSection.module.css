@@ -2,7 +2,7 @@
 
 .Contain {
     font-family: "Nunito",sans-serif;
-    margin: 20px 0 ;
+    margin: 40px 0 ;
 }
 .text {
     display: flex;
@@ -21,4 +21,82 @@
     text-decoration: none;
     color: #003271;
     font-size: 16px;
+}
+.cardsContainer {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 30px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardTop img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.cardBottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.cardBottom h3 {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #003271;
+    cursor: pointer;
+}
+
+.cardBottom p {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    color: #555;
+}
+
+.detailsRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.detailsRow p {
+    font-family: "Nunito", sans-serif;
+    font-size: 14px;
+    color: #555;
+}
+
+.bottomRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #eee;
+}
+
+
+.bottomRow p {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #003271;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
 }

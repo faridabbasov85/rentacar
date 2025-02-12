@@ -34,7 +34,7 @@ const Header = () => {
 
       <div className={styles.navbar}>
         <ul>
-          <a href="">Avto Park</a>
+          <a onClick={() => navigation("/cars")} href="">Avto Park</a>
           <a onClick={() => navigation("/services")} href="">
             Xidmətlər
           </a>
@@ -92,7 +92,7 @@ const Header = () => {
               </div>
               <div className={styles.menuBar}>
                 <ul>
-                  <a href="">Avto Park</a>
+                  <a onClick={() => navigation("/cars")} href="">Avto Park</a>
                   <a onClick={() => navigation("/services")} href="">
                     Xidmətlər
                   </a>

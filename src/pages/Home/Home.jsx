@@ -11,7 +11,7 @@ const Home = () => {
     <div>
         <Header/>
         <OneSection/>
-        {/* <TwoSection/> */}
+        <TwoSection/>
         <ThreeSection/>
         <FourSection/>
         <Footer/>

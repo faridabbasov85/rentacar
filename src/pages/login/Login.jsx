@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import logo from "../photo/logo.png";
 import { useNavigate } from "react-router-dom";
 import { RiArrowGoBackLine } from "react-icons/ri";
-import { supabase } from "../../supabase/supabase";  // Supabase importu
+import { supabase } from "../../supabase/supabase"; 
 
 const Login = () => {
   const navigation = useNavigate();
@@ -25,7 +25,11 @@ const Login = () => {
         setErrorText("Something went wrong. Please try again.");
       }
     } else {
-      navigation("/"); // Login uğurlu olarsa ana səhifəyə yönləndirir
+      if (data.user.email === "admin@admin") {
+        navigation("/admin-dashboard");
+      } else {
+        navigation("/");
+      }
     }
   };
 
@@ -59,7 +63,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {errorText && <p style={{ color: "red" }}>{errorText}</p>} {/* Error mesajı */}
+          {errorText && <p style={{ color: "red" }}>{errorText}</p>}{" "}
           <button className={styles.Button} type="submit">
             Login
           </button>

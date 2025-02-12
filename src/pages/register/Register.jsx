@@ -26,9 +26,13 @@ const Register = () => {
     const { data, error } = await supabase.auth.signUp({ email, password });
 
     if(error) {
-    // error.message; // bu sene mesaji qaytarir yuxarida state yaradarsan asagida <p>{errorText}</p> yazib
-    // gosterersen eger error olsa bax bele
+    console.log(error.message);
     }
+    await supabase
+    .from("users")
+    .insert([{id:data.user.id, email, role:"user"}])
+
+    alert("Qeydiyyat tamamlandı")
   };
 
   return (

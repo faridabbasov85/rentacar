@@ -6,31 +6,30 @@ import { IoMdMail } from "react-icons/io";
 import { FaFacebookSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 const Footer = () => {
+  const navigation = useNavigate();
 
-  const navigation = useNavigate()
+  const goHome = () => {
+    navigation("/");
+  };
 
-  const goHome = () =>{
-    navigation('/')
-  }
-
-  const goServices = () =>{
-    navigation('/services')
-  }
+  const goServices = () => {
+    navigation("/services");
+  };
 
   const goRules = () => {
-    navigation("/rules")
-  }
+    navigation("/rules");
+  };
 
   const goAbout = () => {
-    navigation("/aboutus")
-  }
+    navigation("/aboutus");
+  };
   const goFaq = () => {
-    navigation("/faq")
-  }
+    navigation("/faq");
+  };
 
   const goContact = () => {
-    navigation("/contact")
-  }
+    navigation("/contact");
+  };
   return (
     <div className={styles.Container}>
       <div className={styles.OneFoot}>
@@ -43,15 +42,25 @@ const Footer = () => {
 
         <div className={styles.company}>
           <h4>Şirkət</h4>
-          <a onClick={goAbout} href="">Şirkət haqqında</a>
-          <a onClick={goServices} href="">Xidmətlər</a>
-          <a onClick={goRules} href="">İcarə şərtləri</a>
+          <a onClick={goAbout} href="">
+            Şirkət haqqında
+          </a>
+          <a onClick={goServices} href="">
+            Xidmətlər
+          </a>
+          <a onClick={goRules} href="">
+            İcarə şərtləri
+          </a>
         </div>
         <div className={styles.support}>
           <h4>Dəstək</h4>
           {/* <a href="">Məlumat mərkəzi</a> */}
-          <a onClick={goFaq} href="">Sual-cavab</a>
-          <a onClick={goContact}  href="">Əlaqə</a>
+          <a onClick={goFaq} href="">
+            Sual-cavab
+          </a>
+          <a onClick={goContact} href="">
+            Əlaqə
+          </a>
         </div>
       </div>
       <div className={styles.TwoText}>
@@ -65,13 +74,21 @@ const Footer = () => {
         </div>
 
         <div className={styles.icon}>
-          <a className={styles.inst} href="">
+          <a className={styles.inst} href="https://www.instagram.com/faridabbasof/"target="_blank">
             <FaInstagram />
           </a>
-          <a className={styles.mail} href="">
+          <a
+            className={styles.mail}
+            href="mailto:faridra-sp102@code.edu.az?subject=Sorğu&body=Salam Farid, mən sizinlə əlaqə saxlamaq istəyirəm."
+          >
             <IoMdMail />
           </a>
-          <a className={styles.facebook} href="">
+
+          <a
+            className={styles.facebook}
+            target="_blank"
+            href="https://www.facebook.com/profile.php?id=61573146687679"
+          >
             <FaFacebookSquare />
           </a>
         </div>
