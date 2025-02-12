@@ -1,0 +1,126 @@
+/* Bütün səhifəni əhatə edən container */
+.Contain {
+    width: 100vw;
+    min-height: 100vh; /* Əvvəl height idi, indi min-height oldu */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Yuxarıdan başlasın */
+    justify-content: flex-start; /* Yuxarıdan yerləşsin */
+    background-color: #F1F6FD;
+    padding: 0 30px;
+    padding-top: 100px;
+}
+  
+  /* Form stili */
+  form {
+    width: 80%;
+    max-width: 1000px;
+    max-height: 90vh; /* Form çox böyük olmasın */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    background-color: #E5EAF2;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 50, 113, 0.2);
+    overflow-y: auto; /* Əgər form uzun olsa, içində scrollbar çıxsın */
+}
+
+  
+  /* Label və input sahələri */
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #003271;
+}
+  
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #003271;
+    background-color: #F1F6FD;
+    color: #003271;
+}
+  
+  /* Submit düyməsi */
+  button[type="submit"] {
+    grid-column: span 2;
+    background-color: #003271;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #00214D;
+  }
+  
+  /* Cədvəl üslubu */
+  table {
+    width: 90%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    background-color: #E5EAF2;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 50, 113, 0.2);
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #003271;
+  }
+  
+  th {
+    background-color: #003271;
+    color: white;
+  }
+  
+  /* Şəkillər arası məsafə */
+  td img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  /* Sil düyməsi */
+  button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Mobil uyğunluq */
+  @media (max-width: 768px) {
+    form {
+      grid-template-columns: 1fr;
+      width: 90%;
+    }
+    
+    table {
+      font-size: 14px;
+      width: 100%;
+    }
+  
+    td img {
+      width: 180px;
+      height: 130px;
+    }
+  }
+  

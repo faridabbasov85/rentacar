@@ -30,7 +30,7 @@ export const productsSlice = createSlice({
         state.products.push(action.payload)
       })
       .addCase(deleteProducts.fulfilled, (state, action) => {
-        state.products = state.products.filter(item => item._id != action.payload)
+        state.products = state.products.filter(item => item._id !== action.payload)
       })
   }
 })

@@ -2,7 +2,8 @@
 
 .Contain {
     font-family: "Nunito",sans-serif;
-    margin: 40px 0 ;
+    padding: 40px 0 ;
+    background-color: #E5EAF2;
 }
 .text {
     display: flex;
