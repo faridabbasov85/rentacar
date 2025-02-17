@@ -3,8 +3,10 @@ import { FaArrowRight } from "react-icons/fa6";
 import axios from "axios"; 
 import styles from './TwoSection.module.css';
 import { FaManatSign } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 const TwoSection = () => {
   const [cars, setCars] = useState([]);
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -18,17 +20,19 @@ const TwoSection = () => {
     fetchCars();
   }, []);
 
+  const displayedCars = cars.slice(0, 4);
+
   return (
     <div className={styles.Contain}>
       <div className={styles.text}>
         <h2>Seçilmiş avtomobillər</h2>
-        <a href="">
+        <a onClick={() => navigation("/cars")}  href="">
           Hamısını göstər <FaArrowRight />
         </a>
       </div>
 
       <div className={styles.cardsContainer}>
-        {cars.map((car) => (
+        {displayedCars.map((car) => (
           <div key={car._id} className={styles.card}>
             <div className={styles.cardTop}>
               <img src={car.image} alt={car.model} />
@@ -46,7 +50,7 @@ const TwoSection = () => {
                 <p>{car.capacity} nəfərlik</p>
               </div>
               <div className={styles.left}>
-                <p>{car.fuelConsumption}</p>
+                <p>100km / {car.fuelConsumption}L</p>
               </div>
               <div className={styles.right}>
                 <p>{car.fuelType}</p>

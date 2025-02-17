@@ -103,7 +103,42 @@ input {
     background-color: #cc0000;
   }
   
+  .FilterSortSection {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #E5EAF2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 50, 113, 0.2);
+}
 
+.FilterSortSection input {
+    width: 40%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #003271;
+    background-color: #F1F6FD;
+    color: #003271;
+    font-size: 16px;
+}
+
+.FilterSortSection select {
+    width: 40%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #003271;
+    background-color: #F1F6FD;
+    color: #003271;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.FilterSortSection select:hover {
+    background-color: #dbe4f3;
+}
   @media (max-width: 768px) {
     form {
       grid-template-columns: 1fr;
@@ -119,5 +154,56 @@ input {
       width: 180px;
       height: 130px;
     }
+    .FilterSortSection {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
   }
-  
+
+  .FilterSortSection input,
+  .FilterSortSection select {
+      width: 100%;
+  }
+  }
+
+
+
+  .upload-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#drop-area {
+    cursor: pointer;
+}
+
+#drop-area p {
+    margin: 0;
+    color: #666;
+}
+
+#browse-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#preview {
+    margin-top: 20px;
+}
+
+#preview img {
+    max-width: 100%;
+    border-radius: 8px;
+}

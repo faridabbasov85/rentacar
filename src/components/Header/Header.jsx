@@ -12,7 +12,7 @@ import { useAuth } from "../../context/AuthContext";
 const Header = () => {
   const navigation = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem("dark-mode") == null ? false : localStorage.getItem("dark-mode"));
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const { user, loading } = useAuth();
@@ -22,8 +22,16 @@ const Header = () => {
   };
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode");
+    const tempV = !isDarkMode;
+
+    setIsDarkMode(tempV);
+/*     document.body.classList.toggle("dark-mode"); */
+  const rootElement = document.getElementById("root");
+    if (tempV) {
+      rootElement.setAttribute("data-theme", "dark");
+    } else {
+      rootElement.removeAttribute("data-theme");
+    }
   };
 
   return (

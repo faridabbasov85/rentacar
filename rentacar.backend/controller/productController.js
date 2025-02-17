@@ -36,7 +36,8 @@ export const postProducts = async (req, res) => {
       transmission,
       pricePerDay,
       color,
-      engine
+      engine,
+      dateAdded: new Date(),
     };
 
     const createdProduct = await productModel.create(newProduct);

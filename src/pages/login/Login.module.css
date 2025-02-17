@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #003271;
+    background-color: #003271 !important;
     height: 100vh;
     justify-content: center;
     gap: 10px;
@@ -42,7 +42,7 @@
     border-radius: 10px;
     border: 1px solid transparent;
     padding-left: 10px;
-    background-color: #385c88;
+    background-color: #385c88 !important;
     color: white;
     font-weight: 800;
 }
@@ -71,7 +71,7 @@
 
 .Right>form>a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 16px;
 }
 
