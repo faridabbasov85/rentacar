@@ -20,7 +20,7 @@ const FourSection = () => {
       </div>
       <div className={styles.image}>
         <img
-          src="https://kralrent.az/frontend/img/brands/3334-lexus.webp"
+          src="https://imgs.search.brave.com/QwC_EbgWUnhmLWVL36kyWK629yfWd9I6_a2bV-vQeZU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nbWFydC5jb20v/ZmlsZXMvMjIvTGV4/dXMtTG9nby1QTkct/UGhvdG8ucG5n"
           alt="Lexus"
         />
       </div>

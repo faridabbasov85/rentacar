@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <div className={styles.Contain}>
       <div className={styles.navLogo}>
-        <img onClick={() => navigation("/")} src={img} alt="Logo" />
+        <a onClick={() => navigation("/")} href="">111 Rent A Car</a>
       </div>
 
       <div className={styles.navbar}>

@@ -13,15 +13,16 @@
     align-items: center;
     padding: 0 30px;
     height: 80px;
-    background-color: #F1F6FD;
+    background-color: var(--header-bg-color) !important;
     position: fixed;
     z-index: 99999 !important;
     width: 100%;
 }
 
-.navLogo>img {
-    width: 230px;
-    cursor: pointer;
+.navLogo> a{
+    text-decoration: none;
+    color: var(--navLogo-link-color) !important;
+    font-size: 35px;
 }
 
 .navbar>ul {
@@ -32,14 +33,14 @@
 }
 
 .navbar>ul>a {
-    color: #003271;
+    color: var(--navbar-link-color) !important;
     text-decoration: none;
     font-size: 15px;
     transition: all ease-in-out 0.5s;
 }
 
 .navbar>ul>a:hover {
-    color: #32A4F6;
+    color: var(--navbar-link-color) !important;
 }
 
 .navActions {
@@ -83,7 +84,8 @@
     cursor: pointer;
     background-color: var(--header-button-bg-color) !important;
 }
-.themeToggleTwo svg{
+
+.themeToggleTwo svg {
     cursor: pointer;
     color: #003271;
     background-color: #32A4F6;
@@ -98,6 +100,13 @@
     color: #003271;
 }
 
+[data-theme="dark"] .userIcon svg,
+[data-theme="dark"] .themeToggle svg,
+[data-theme="dark"] .wishlist svg,
+[data-theme="dark"] .menu button svg {
+    color: white;
+}
+
 .menu {
     display: none;
 }
@@ -110,6 +119,8 @@
     padding-left: 30px;
     padding-top: 30px;
 }
+
+
 
 .menuBar>ul {
     display: flex;
@@ -134,10 +145,12 @@
 }
 
 .menu button {
-    background-color: #F2F6FE;
-    border: 1px solid transparent;
+   background-color: transparent;
 }
 
+.menu button:hover{
+    background-color: transparent;
+}
 
 
 @media screen and (max-width:1200px) {
@@ -162,8 +175,8 @@
         display: none;
     }
 
-    .navLogo>img {
-        width: 120px;
+    .navLogo>a {
+        font-size: 1rem;
     }
 
     .navActions {

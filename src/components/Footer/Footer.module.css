@@ -3,7 +3,7 @@
 .Container {
     font-family: "Nunito", sans-serif;
     padding: 30px 0;
-    background-color: #E5EAF2;
+    background-color: var(--contain-bg-color) !important;
 }
 
 .OneFoot {
@@ -15,13 +15,14 @@
     margin: 50px 0;
 }
 
-.image>img {
-    width: 200px;
-    cursor: pointer;
+.image> a{
+    text-decoration: none;
+    color: var(--navLogo-link-color) !important;
+    font-size: 30px;
 }
 
 .logo>p {
-    color: #4E5D78;
+    color: var(--Footer-text-color) !important;
 }
 
 .company {
@@ -33,11 +34,12 @@
 
 .company>h4 {
     font-size: 16px;
+    color: var(--title-text-color) !important;
 }
 
 .company>a {
     font-size: 14px;
-    color: #4E5D78;
+    color: var(--Footer-text-color) !important;
     text-decoration: none;
 }
 
@@ -58,18 +60,19 @@
 
 .support>h4 {
     font-size: 16px;
+    color: var(--title-text-color) !important;
 }
 
 .support>a {
     text-decoration: none;
-    color: #4E5D78;
+color: var(--Footer-text-color) !important;
     font-size: 14px;
 }
 
 .TwoText {
     display: flex;
     justify-content: space-between;
-    background-color: #EDF1F8;
+    background-color: var(--Footer-form-bg-color) !important;
     padding: 30px 30px;
     border-radius: 50px;
     margin: 0 30px;
@@ -77,6 +80,7 @@
 
 .about>span {
     font-size: 14px;
+    color: var(--title-text-color);
 }
 
 .about>span>a {
@@ -140,8 +144,8 @@
         gap: 30px;
     }
 
-    .image>img {
-        width: 150px;
+    .image>a {
+       font-size: 20px;
     }
 
     .logo>p {

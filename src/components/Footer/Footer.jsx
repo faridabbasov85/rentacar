@@ -35,7 +35,7 @@ const Footer = () => {
       <div className={styles.OneFoot}>
         <div className={styles.logo}>
           <div className={styles.image}>
-            <img onClick={goHome} src={logo} alt="logo" />
+          <a onClick={() => navigation("/")} href="">111 Rent A Car</a>
           </div>
           <p>Günlük və saatlıq avtomobil icarəsi üçün xidmətinizdəyik</p>
         </div>

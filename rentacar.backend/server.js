@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors'
 import productRouter from './router/productRouter.js'
 import wishRouter from './router/wishRouter.js'
+import applicationRouter from './router/applicationRouter.js'
 import  {configDotenv} from 'dotenv'
 import { connectDB } from './config/config.js';
 configDotenv()
@@ -15,6 +16,8 @@ connectDB()
 
 app.use('/wishlist',wishRouter)
 app.use('/product', productRouter)
+app.use('/applications', applicationRouter)
+
 app.listen(5500, () => {
     console.log("backend running");
 })

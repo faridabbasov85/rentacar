@@ -3,7 +3,7 @@
 .Contain {
     font-family: "Nunito",sans-serif;
     padding: 40px 0 ;
-    background-color: #E5EAF2;
+    background-color: var(--contain-bg-color) !important;
 }
 .text {
     display: flex;
@@ -14,13 +14,14 @@
 .text > h2 {
     font-size: 32px;
     font-weight: 400;
+    color: var(--title-text-color) !important;
 }
 .text > a{
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: #003271;
+    color: var(--navbar-link-color) !important;
     font-size: 16px;
 }
 .cardsContainer {
@@ -32,7 +33,7 @@
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--card-top-bg-color) !important;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -69,7 +70,7 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: var(--card-bg-color) !important;
 }
 
 .detailsRow p {
@@ -82,7 +83,7 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #eee;
+    background-color: var(--card-bottom-bg-color) !important;
 }
 
 
@@ -90,7 +91,7 @@
     font-family: "Nunito", sans-serif;
     font-size: 16px;
     font-weight: 600;
-    color: #003271;
+    color: var(--navbar-link-color) !important;
 }
 
 a {

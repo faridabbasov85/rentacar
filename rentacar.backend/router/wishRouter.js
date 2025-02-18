@@ -8,8 +8,9 @@ import {
 const router = express.Router();
 
 router.route('/')
-.get(getWishs)
 .post(postWishs)
 .delete(deleteWishs)
+
+router.get('/:id',getWishs);
 
 export default router

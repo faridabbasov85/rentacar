@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import styles from './Cars.module.css';
-import Header from '../../components/Header/Header';
-import axios from 'axios';
+import styles from "./Cars.module.css";
+import Header from "../../components/Header/Header";
+import axios from "axios";
 import { FaManatSign } from "react-icons/fa6";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Cars = () => {
   const [minYear, setMinYear] = useState(1905);
   const [maxYear, setMaxYear] = useState(new Date().getFullYear());
   const [cars, setCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
-  const [favorites, setFavorites] = useState({});
-  const [currentPage, setCurrentPage] = useState(1); // cari səhifə
-  const carsPerPage = 8; // səhifə başına maşın sayı
+  const [favorites, setFavorites] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const carsPerPage = 8;
   const [brand, setBrand] = useState("");
   const [transmission, setTransmission] = useState("");
   const [fuelType, setFuelType] = useState("");
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  const { user, loading } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("date"); // Default "Tarixə görə"
+  const [sortOrder, setSortOrder] = useState("date");
 
   const handleMinYearChange = (e) => {
     setMinYear(e.target.value);
   };
 
   const handleMaxYearChange = (e) => {
-    setMaxYear(e.target.value || new Date().getFullYear()); // Boş qoyanda hazırkı ili götür
+    setMaxYear(e.target.value || new Date().getFullYear());
   };
 
   const handleBrandChange = (e) => {
@@ -44,30 +44,35 @@ const Cars = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Formun avtomatik yenilənməsinin qarşısını alır
+    e.preventDefault();
     applyFilters();
   };
 
   const applyFilters = () => {
-    const filtered = cars.filter((car) => {
-      return (
-        car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) && // Axtarış filtrləmə
-        (brand ? car.brand === brand : true) && // Marka filtrləmə
-        (transmission ? car.transmission === transmission : true) && // Transmissiya filtrləmə
-        (fuelType ? car.fuelType === fuelType : true) && // Yanacaq növü filtrləmə
-        (car.year >= minYear && car.year <= maxYear) // İl aralığı filtrləmə
-      );
-    }).sort((a, b) => {
-      if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay; // Qiymətə görə artan
-      if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay; // Qiymətə görə azalan
-      return new Date(b.createdAt) - new Date(a.createdAt); // Tarixə görə sıralama
-    });
+    const filtered = cars
+      .filter((car) => {
+        return (
+          car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) && // Axtarış filtrləmə
+          (brand ? car.brand === brand : true) && // Marka filtrləmə
+          (transmission ? car.transmission === transmission : true) && // Transmissiya filtrləmə
+          (fuelType ? car.fuelType === fuelType : true) && // Yanacaq növü filtrləmə
+          car.year >= minYear &&
+          car.year <= maxYear // İl aralığı filtrləmə
+        );
+      })
+      .sort((a, b) => {
+        if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay; // Qiymətə görə artan
+        if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay; // Qiymətə görə azalan
+        return new Date(b.createdAt) - new Date(a.createdAt); // Tarixə görə sıralama
+      });
 
     setFilteredCars(filtered);
-    setCurrentPage(1); // Hər dəfə filter tətbiq edildikdə səhifə 1-ə qayıtsın
+    setCurrentPage(1);
   };
 
   useEffect(() => {
+    if (loading) return;
+
     const fetchCars = async () => {
       try {
         const response = await axios.get("http://localhost:5500/product");
@@ -78,19 +83,33 @@ const Cars = () => {
       }
     };
     fetchCars();
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
+    if (loading) return;
+
     if (user) {
-      axios.get(`http://localhost:5500/wishlist/${user.id}`)
-        .then(response => setFavorites(response.data))
-        .catch(error => console.error("Favoritlər gətirilə bilmədi:", error));
+      axios
+        .get(`http://localhost:5500/wishlist/${user.id}`)
+        .then((response) => {
+          setFavorites(response.data);
+        })
+        .catch((error) => console.error("Favoritlər gətirilə bilmədi:", error));
     }
-  }, [user]);
+  }, [user, loading]);
 
   useEffect(() => {
     applyFilters(); // Axtarış, sıralama və ya filtrlər dəyişdikdə avtomatik tətbiq et
-  }, [searchTerm, brand, transmission, fuelType, minYear, maxYear, sortOrder, cars]);
+  }, [
+    searchTerm,
+    brand,
+    transmission,
+    fuelType,
+    minYear,
+    maxYear,
+    sortOrder,
+    cars,
+  ]);
 
   // Avtomobilləri səhifələrə bölmək
   const indexOfLastCar = currentPage * carsPerPage;
@@ -105,17 +124,37 @@ const Cars = () => {
       return;
     }
 
-    const updatedFavorites = { ...favorites, [id]: !favorites[id] };
-    setFavorites(updatedFavorites);
+    const liked = favorites.some((item) => item.carId == id);
+    let updatedFavorites = favorites;
 
-    try {
-      await axios.post("http://localhost:5500/wishlist", {
-        userId: user.id,
-        carId: id,
-      });
-    } catch (error) {
-      console.error("Favoritə əlavə edilə bilmədi:", error);
+    if (liked) {
+      const _id = favorites.filter((item) => item.carId == id)[0]._id;
+
+      try {
+        await axios.delete("http://localhost:5500/wishlist", {
+          data: {
+            _id: _id,
+          },
+        });
+      } catch (error) {
+        console.error("Favoritden sile bilmədi:", error);
+      }
+
+      updatedFavorites = updatedFavorites.filter((i) => i.carId != id);
+    } else {
+      try {
+        const res = await axios.post("http://localhost:5500/wishlist", {
+          userId: user.id,
+          carId: id,
+        });
+
+        updatedFavorites = [...updatedFavorites, res.data];
+      } catch (error) {
+        console.error("Favoritə əlavə edilə bilmədi:", error);
+      }
     }
+
+    setFavorites(updatedFavorites);
   };
 
   return (
@@ -146,7 +185,7 @@ const Cars = () => {
                   min="1905"
                   max={maxYear}
                   onChange={handleMinYearChange}
-                  placeholder='İl, min'
+                  placeholder="İl, min"
                 />
                 <span> - </span>
                 <input
@@ -195,14 +234,22 @@ const Cars = () => {
                 <div key={car._id} className={styles.card}>
                   <div className={styles.cardTop}>
                     <img src={car.image} alt={car.model} />
-                    <FaHeart
-                      className={`${styles.heartIcon} ${favorites[car._id] ? styles.filledHeart : ''}`}
-                      onClick={() => toggleFavorite(car._id)}
-                    />
+                    {favorites && (
+                      <FaHeart
+                        className={`${styles.heartIcon} ${
+                          favorites.some((i) => i.carId === car._id)
+                            ? styles.filledHeart
+                            : ""
+                        }`}
+                        onClick={() => toggleFavorite(car._id)}
+                      />
+                    )}
                   </div>
                   <div className={styles.cardBottom}>
                     <div className={styles.left}>
-                      <h3>{car.brand} {car.model}</h3>
+                      <h3>
+                        {car.brand} {car.model}
+                      </h3>
                     </div>
                     <div className={styles.right}>
                       <p>{car.year}</p>
@@ -224,10 +271,14 @@ const Cars = () => {
                   </div>
                   <div className={styles.bottomRow}>
                     <div className={styles.left}>
-                      <p>{car.pricePerDay} <FaManatSign /> / günlük</p>
+                      <p>
+                        {car.pricePerDay} <FaManatSign /> / günlük
+                      </p>
                     </div>
                     <div className={styles.right}>
-                      <button onClick={() => navigate(`/details/${car._id}`)}>Ətraflı</button>
+                      <button onClick={() => navigate(`/details/${car._id}`)}>
+                        Ətraflı
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -236,11 +287,15 @@ const Cars = () => {
             <div className={styles.pagination}>
               <span>Toplam avtomobil: {filteredCars.length}</span>
               <ul>
-                {Array(Math.ceil(filteredCars.length / carsPerPage)).fill().map((_, index) => (
-                  <li key={index}>
-                    <button onClick={() => paginate(index + 1)}>{index + 1}</button>
-                  </li>
-                ))}
+                {Array(Math.ceil(filteredCars.length / carsPerPage))
+                  .fill()
+                  .map((_, index) => (
+                    <li key={index}>
+                      <button onClick={() => paginate(index + 1)}>
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

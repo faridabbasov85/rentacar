@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Wishlist.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getWishs, deleteWishs } from "../../redux/thunks/wish/wish";
+import { getWishs} from "../../redux/thunks/wish/wish";
 import { FaManatSign } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
+import Header from '../../components/Header/Header'
+import axios from "axios";
+
 const Wishlist = () => {
   const [sortOrder, setSortOrder] = useState("date");
   const [favorites, setFavorites] = useState({});
@@ -12,14 +15,24 @@ const Wishlist = () => {
 
   useEffect(() => {
     dispatch(getWishs());
-  });
+  }, []);
 
   const wish = useSelector((state) => state.products.wishlist);
 
-   useEffect(() => {
-      const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
-      setFavorites(storedFavorites);
-    }, []);
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:5500/wishlist/${user.id}`)
+        .then((response) => {
+          setFavorites(response.data);
+        })
+        .catch((error) => console.error("Favoritlər gətirilə bilmədi:", error));
+    }
+  }, [user]);
+  
+  const filteredWishlist = wish.filter((item) =>
+    favorites.some((fav) => fav.carId === item._id)
+  );
 
     const toggleFavorite = (id) => {
       setFavorites((prev) => {
@@ -32,6 +45,7 @@ const Wishlist = () => {
 
   return (
     <div>
+      <Header/>
       <div className={styles.contain}>
         <div className={styles.title}>
           <h1>Seçilmiş Elanlar</h1>

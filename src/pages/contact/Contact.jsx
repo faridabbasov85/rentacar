@@ -6,11 +6,36 @@ import { BsPhoneVibrate } from "react-icons/bs";
 import { FaWhatsapp } from "react-icons/fa";
 import { BsEnvelopeAt } from "react-icons/bs";
 import { LuClock4 } from "react-icons/lu";
+import axios from "axios";
+
 const Contact = () => {
   const phoneNumber = "+994 70 570 68 68";
   const whatsappNumber = "+994705706868";
   const email = "faridra-sp102@code.edu.az";
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
+    const formData = new FormData(e.target);
+
+    const name = formData.get("fullname")
+    const phoneNumber = formData.get("mobile")
+    const topic = formData.get("topic")
+    const message = formData.get("message")
+
+    const data = {
+      name,
+      phoneNumber,
+      topic,
+      message
+    }
+
+    await axios.post("http://localhost:5500/applications",data);
+
+    e.target.reset();
+  };
+  
   return (
     <div className={styles.container}>
       <Header />
@@ -55,7 +80,7 @@ const Contact = () => {
       </div>
       <div className={styles.formandmap}>
         <div className={styles.forms}>
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <h3>Müraciət blankı</h3>
             <div className={styles.inp}>
               <label htmlFor="fullname">Ad Soyad</label>
@@ -79,12 +104,12 @@ const Contact = () => {
 
             <div className={styles.inp}>
               <label htmlFor="title">Mövzu</label>
-              <input type="text" name="title" id="title" placeholder="Mövzu" />
+              <input type="text" name="topic" id="title" placeholder="Mövzu" />
             </div>
 
             <div className={styles.inp}>
               <label htmlFor="text">Mesajınız</label>
-              <input type="text" name="text"
+              <input type="text" name="message"
                 id={styles.text}
                 placeholder="Mesajınız" />
             </div>
