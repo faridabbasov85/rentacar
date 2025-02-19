@@ -2,8 +2,18 @@ import productModel from "../model/productModel.js";
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await productModel.find();
-    res.json(products);
+    const { id } = req.params;
+    console.log(id);
+
+    if (id) {
+      const cars = await productModel.find({ _id: id });
+      res.json(cars);
+    }
+
+    if (!id) {
+      const products = await productModel.find();
+      res.json(products);
+    }
   } catch (error) {
     res.status(500).json({ message: "Server xətası", error });
   }

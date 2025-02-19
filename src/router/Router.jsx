@@ -12,6 +12,9 @@ import Register from "../pages/register/Register";
 import Adminpanel from "../pages/adminpanel/Adminpanel";
 import Cars from "../pages/cars/Cars";
 import ProtectedRoute from "../components/ProtectedRouter/ProtectedRoute";
+import Notfound from "../pages/NotFound/NotFound";
+import Car from "../pages/car/Car";
+import Payment from "../pages/payment/Payment";
 const Router = () => {
   return (
     <div>
@@ -25,11 +28,14 @@ const Router = () => {
           <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path='*' element={<Notfound/>}/>
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute adminOnly />}>
             <Route path="/admin-dashboard" element={<Adminpanel />} />
           </Route>
           <Route path="/cars" element={<Cars />} />
+          <Route path="/cars/:id" element={<Car />} />
+          <Route path="/payment" element={<Payment/>}/>
         </Routes>
       </BrowserRouter>
     </div>

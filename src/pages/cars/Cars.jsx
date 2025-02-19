@@ -52,7 +52,7 @@ const Cars = () => {
     const filtered = cars
       .filter((car) => {
         return (
-          car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) && // Axtarış filtrləmə
+          car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) && 
           (brand ? car.brand === brand : true) && // Marka filtrləmə
           (transmission ? car.transmission === transmission : true) && // Transmissiya filtrləmə
           (fuelType ? car.fuelType === fuelType : true) && // Yanacaq növü filtrləmə
@@ -123,39 +123,40 @@ const Cars = () => {
       navigate("/login"); // Əgər istifadəçi login olmayıbsa, login səhifəsinə yönləndir
       return;
     }
-
-    const liked = favorites.some((item) => item.carId == id);
-    let updatedFavorites = favorites;
-
+  
+    const liked = favorites.some((item) => item.carId === id);
+    let updatedFavorites = [...favorites];
+  
     if (liked) {
-      const _id = favorites.filter((item) => item.carId == id)[0]._id;
-
+      // Əgər artıq favoritdədirsə, silirik
+      const _id = favorites.filter((item) => item.carId === id)[0]._id;
+  
       try {
         await axios.delete("http://localhost:5500/wishlist", {
-          data: {
-            _id: _id,
-          },
+          data: { _id }
         });
+  
+        updatedFavorites = updatedFavorites.filter((i) => i.carId !== id);
       } catch (error) {
-        console.error("Favoritden sile bilmədi:", error);
+        console.error("Favoritdən silinmədi:", error);
       }
-
-      updatedFavorites = updatedFavorites.filter((i) => i.carId != id);
     } else {
+      // Əgər favoritdə deyilsə, əlavə edirik
       try {
         const res = await axios.post("http://localhost:5500/wishlist", {
           userId: user.id,
           carId: id,
         });
-
+  
         updatedFavorites = [...updatedFavorites, res.data];
       } catch (error) {
-        console.error("Favoritə əlavə edilə bilmədi:", error);
+        console.error("Favoritə əlavə edilmədi:", error);
       }
     }
-
-    setFavorites(updatedFavorites);
+  
+    setFavorites(updatedFavorites); // Yeni favoritlər siyahısını vəziyyətdə saxlamaq
   };
+  
 
   return (
     <div>
@@ -242,6 +243,7 @@ const Cars = () => {
                             : ""
                         }`}
                         onClick={() => toggleFavorite(car._id)}
+                        
                       />
                     )}
                   </div>
@@ -276,7 +278,7 @@ const Cars = () => {
                       </p>
                     </div>
                     <div className={styles.right}>
-                      <button onClick={() => navigate(`/details/${car._id}`)}>
+                      <button onClick={() => navigate(`/cars/${car._id}`)}>
                         Ətraflı
                       </button>
                     </div>

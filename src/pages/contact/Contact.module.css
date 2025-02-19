@@ -83,6 +83,7 @@
 .forms form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .forms label {
@@ -128,6 +129,7 @@
     padding: 20px;
     border-radius: 20px;
     width: 60%;
+    height: 100%;
 }
 
 @media screen and (max-width:1200px) and (min-width:993px) {

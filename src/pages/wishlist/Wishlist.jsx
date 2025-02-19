@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Wishlist.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getWishs} from "../../redux/thunks/wish/wish";
+import { getWishs, deleteWishs } from "../../redux/thunks/wish/wish";
 import { FaManatSign } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
-import Header from '../../components/Header/Header'
+import Header from "../../components/Header/Header";
+import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
 const Wishlist = () => {
   const [sortOrder, setSortOrder] = useState("date");
-  const [favorites, setFavorites] = useState({});
+  const [favorites, setFavorites] = useState();
 
   const dispatch = useDispatch();
+  const { user, loading } = useAuth();
 
   useEffect(() => {
     dispatch(getWishs());
@@ -20,32 +22,55 @@ const Wishlist = () => {
   const wish = useSelector((state) => state.products.wishlist);
 
   useEffect(() => {
-    if (user) {
-      axios
-        .get(`http://localhost:5500/wishlist/${user.id}`)
-        .then((response) => {
-          setFavorites(response.data);
-        })
-        .catch((error) => console.error("Favoritlər gətirilə bilmədi:", error));
-    }
-  }, [user]);
-  
-  const filteredWishlist = wish.filter((item) =>
-    favorites.some((fav) => fav.carId === item._id)
-  );
+    if (loading) return;
 
-    const toggleFavorite = (id) => {
-      setFavorites((prev) => {
-        const updatedFavorites = { ...prev, [id]: !prev[id] };
-        localStorage.setItem("favorites", JSON.stringify(updatedFavorites)); // LocalStorage-a yaz
-        return updatedFavorites;
-      });
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        `http://localhost:5500/wishlist/${user.id}`
+      );
+
+      if (!data) return;
+
+      const carsId = data.map((fav) => fav.carId);
+      
+      const cars = await Promise.all(
+        carsId.map(async (carId) => {
+          const { data } = await axios.get(
+            `http://localhost:5500/product/${carId}`
+          );
+          return data;
+        })
+      );
+
+      const finalCars = cars.map(car => car[0]);
+      setFavorites(finalCars)
+      
     };
 
+    fetchData();
+  }, [user, loading]);
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) => {
+      const updatedFavorites = { ...prev, [id]: !prev[id] };
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
+  };
+
+  const sortedWishes = wish.sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.pricePerDay - b.pricePerDay;
+    }
+    if (sortOrder === "desc") {
+      return b.pricePerDay - a.pricePerDay;
+    }
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className={styles.contain}>
         <div className={styles.title}>
           <h1>Seçilmiş Elanlar</h1>
@@ -64,8 +89,8 @@ const Wishlist = () => {
         </div>
 
         <div>
-          {wish &&
-            wish.map((item) => (
+          {favorites &&
+            favorites.map((item) => (
               <div key={item._id} className={styles.card}>
                 <div className={styles.cardTop}>
                   <img src={item.image} alt={item.model} />

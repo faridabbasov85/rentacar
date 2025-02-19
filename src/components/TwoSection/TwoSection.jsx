@@ -63,9 +63,7 @@ const TwoSection = () => {
               <div className={styles.left}>
                 <p>{car.pricePerDay} <FaManatSign /> / günlük</p>
               </div>
-              <div className={styles.right}>
-                <a href={`details/${car._id}`}>Ətraflı</a>
-              </div>
+            
             </div>
           </div>
         ))}
