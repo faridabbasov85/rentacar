@@ -24,9 +24,12 @@
     width: 100%;
 }
 
-.filter form {
+.filter>form {
     display: flex;
     width: 40%;
+    background-color: #E5EAF2;
+    padding: 20px;
+    border-radius: 10px;
     flex-direction: column;
     gap: 15px;
 }
@@ -41,6 +44,10 @@ select {
     margin: 5px 0;
     width: 100%;
     box-sizing: border-box;
+}
+
+.filter>form>select {
+    width: 100%;
 }
 
 select {
@@ -76,18 +83,18 @@ button[type="submit"]:hover {
     flex-direction: column;
     gap: 20px;
     margin-top: 40px;
+    width: 100%;
 }
 
 .car {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Kartlar arasında məsafə */
+    gap: 30px;
     justify-content: space-between;
-    padding: 0 30px; /* Sağ və soldan padding */
 }
 
 .card {
-    width: calc(25% - 30px); /* Maksimum 4 maşın bir sırada */
+    width: calc(25% - 30px);
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -97,7 +104,7 @@ button[type="submit"]:hover {
 }
 
 .card:hover {
-  
+
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -155,6 +162,7 @@ button[type="submit"]:hover {
     font-weight: bold;
     color: #003271;
 }
+
 .bottomRow a {
     color: #003271;
     font-weight: 600;
@@ -222,12 +230,13 @@ button[type="submit"]:hover {
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     transition: color 0.3s ease;
-  }
-  
-  .filledHeart {
+}
+
+.filledHeart {
     color: red;
-  }
-  .heartIcon {
+}
+
+.heartIcon {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -235,27 +244,79 @@ button[type="submit"]:hover {
     color: white;
     cursor: pointer;
     transition: color 0.3s ease;
-  }
-  
-  .filledHeart {
+}
+
+.filledHeart {
     color: red;
-  }
-  
-  .FilterSortSection{
+}
+
+.FilterSortSection {
     display: flex;
-    padding: 0 30px;
     padding-top: 30px;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
-  .FilterSortSection > input{
-    width: 20%;
-  }
+.FilterSortSection>input {
+   width: 30%;
+}
 
-  .right > button {
+.FilterSortSection > select {
+    width: 30%;
+}
+
+.right>button {
     background-color: #003271;
-  }
-  .pagination > ul > li > button {
+}
+
+.pagination>ul>li>button {
     background-color: #003271;
-  } 
+}
+
+@media screen and (max-width:992px) and (min-width:768px) {
+
+    .card {
+        width: 30%;
+    }
+
+}
+
+
+
+@media screen and (max-width:767px) and (min-width:577px) {
+
+    .card {
+        width: 40%;
+    }
+
+    .filter>form {
+        width: 70%;
+    }
+    .FilterSortSection>input {
+        width: 40%;
+    }
+
+    .FilterSortSection > select {
+        width: 40%;
+    }
+
+}
+
+@media screen and (max-width:576px) {
+
+    .filter>form {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .FilterSortSection>input {
+        width: 47%;
+    }
+
+    .FilterSortSection > select {
+        width: 47%;
+    }
+}

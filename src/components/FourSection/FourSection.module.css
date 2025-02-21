@@ -10,6 +10,8 @@
   cursor: grab;
 }
 
+
+
 .image>img {
   width: 55px;
   animation: move 10s infinite linear;

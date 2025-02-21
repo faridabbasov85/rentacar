@@ -43,6 +43,10 @@ const Cars = () => {
     setFuelType(e.target.value);
   };
 
+  const handleAddBrand = (newBrand) => {
+    setCars([...cars, { brand: newBrand }]); 
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     applyFilters();
@@ -53,17 +57,17 @@ const Cars = () => {
       .filter((car) => {
         return (
           car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) && 
-          (brand ? car.brand === brand : true) && // Marka filtrləmə
-          (transmission ? car.transmission === transmission : true) && // Transmissiya filtrləmə
-          (fuelType ? car.fuelType === fuelType : true) && // Yanacaq növü filtrləmə
+          (brand ? car.brand === brand : true) && 
+          (transmission ? car.transmission === transmission : true) && 
+          (fuelType ? car.fuelType === fuelType : true) && 
           car.year >= minYear &&
-          car.year <= maxYear // İl aralığı filtrləmə
+          car.year <= maxYear 
         );
       })
       .sort((a, b) => {
-        if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay; // Qiymətə görə artan
-        if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay; // Qiymətə görə azalan
-        return new Date(b.createdAt) - new Date(a.createdAt); // Tarixə görə sıralama
+        if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay; 
+        if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay; 
+        return new Date(b.createdAt) - new Date(a.createdAt); 
       });
 
     setFilteredCars(filtered);
@@ -77,7 +81,7 @@ const Cars = () => {
       try {
         const response = await axios.get("http://localhost:5500/product");
         setCars(response.data);
-        setFilteredCars(response.data); // Başlangıçda bütün maşınları göstər
+        setFilteredCars(response.data); 
       } catch (error) {
         console.error("Xəta baş verdi:", error.message);
       }
@@ -99,7 +103,7 @@ const Cars = () => {
   }, [user, loading]);
 
   useEffect(() => {
-    applyFilters(); // Axtarış, sıralama və ya filtrlər dəyişdikdə avtomatik tətbiq et
+    applyFilters(); 
   }, [
     searchTerm,
     brand,
@@ -111,16 +115,16 @@ const Cars = () => {
     cars,
   ]);
 
-  // Avtomobilləri səhifələrə bölmək
+
   const indexOfLastCar = currentPage * carsPerPage;
   const indexOfFirstCar = indexOfLastCar - carsPerPage;
-  const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar); // Bu səhifədəki maşınlar
+  const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar); 
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const toggleFavorite = async (id) => {
     if (!user) {
-      navigate("/login"); // Əgər istifadəçi login olmayıbsa, login səhifəsinə yönləndir
+      navigate("/login"); 
       return;
     }
   
@@ -128,7 +132,7 @@ const Cars = () => {
     let updatedFavorites = [...favorites];
   
     if (liked) {
-      // Əgər artıq favoritdədirsə, silirik
+
       const _id = favorites.filter((item) => item.carId === id)[0]._id;
   
       try {
@@ -141,7 +145,6 @@ const Cars = () => {
         console.error("Favoritdən silinmədi:", error);
       }
     } else {
-      // Əgər favoritdə deyilsə, əlavə edirik
       try {
         const res = await axios.post("http://localhost:5500/wishlist", {
           userId: user.id,
@@ -154,7 +157,7 @@ const Cars = () => {
       }
     }
   
-    setFavorites(updatedFavorites); // Yeni favoritlər siyahısını vəziyyətdə saxlamaq
+    setFavorites(updatedFavorites); 
   };
   
 
@@ -169,16 +172,12 @@ const Cars = () => {
           <div className={styles.filter}>
             <form onSubmit={handleSubmit}>
               <label>Marka:</label>
-              <select value={brand} onChange={handleBrandChange}>
+              <select>
                 <option value="">Bütün markalar</option>
-                <option value="BMW">BMW</option>
-                <option value="Audi">Audi</option>
-                <option value="Lexus">Lexus</option>
-                <option value="Toyota">Toyota</option>
-                <option value="Mercedes">Mercedes</option>
-                <option value="Kia">Kia</option>
-                <option value="Hyundai">Hyundai</option>
-              </select>
+  {[...new Set(cars.map(car => car.brand))].map((brand, index) => (
+    <option key={index} value={brand}>{brand}</option>
+  ))}
+</select>
               <label>Buraxılış ili:</label>
               <div className={styles.yearRange}>
                 <input

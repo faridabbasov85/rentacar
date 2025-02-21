@@ -144,8 +144,9 @@
     color: #003271;
 }
 
-.menu button {
+.menu > button {
    background-color: transparent;
+   padding: 5px;
 }
 
 .menu button:hover{
@@ -193,5 +194,21 @@
     .menu svg {
         width: 28px;
         height: 28px;
+    }
+}
+
+@media screen and (max-width:576px) {
+
+
+       .themeToggle svg,
+    .wishlist svg,
+    .userIcon svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .menu svg {
+        width: 22px;
+        height: 22px;
     }
 }

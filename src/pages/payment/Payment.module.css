@@ -5,13 +5,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Nunito",sans-serif;
+    font-family: "Nunito", sans-serif;
     height: 100vh;
 }
-form{
+
+form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 15px;
 }
 
 .paymentRow {
@@ -19,6 +21,17 @@ form{
     flex-direction: column;
     gap: 20px;
 }
+
 .paymentTitle {
     padding-bottom: 10px;
+}
+
+.paymentBox>form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.paymentBox > h2 {
+    color: #003271;
 }

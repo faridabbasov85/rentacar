@@ -15,11 +15,9 @@
 
 .Contain {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    max-width: 1200px;
     gap: 60px;
 }
 
@@ -43,12 +41,10 @@ h1 {
 }
 
 .detailImage img {
-    width: 500px;
-    height: 400px;
+        width: 500px;
+        height: 400px;
     object-fit: cover;
     border-radius: 10px;
-
-
     border-radius: 10px;
 }
 
@@ -216,4 +212,62 @@ button:hover {
 
 .formRow button:hover {
     background-color: #0056b3;
+}
+
+@media screen and (max-width:1200px) and (min-width:993px) {
+
+    .detailImage {
+        padding: 10px;
+    }
+
+    .detailImage img {
+        width: 380px;
+        height: 350px;
+    }
+
+}
+
+@media screen and (max-width:992px) and (min-width:768px) {
+
+    .detailImage {
+        padding: 10px;
+    }
+
+    .detailImage img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width:767px) {
+
+
+
+    .Contain {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 30px;
+        padding-bottom: 50px;
+        width: 100%;
+    }
+    .Container {
+        width: 100%;
+        
+    }
+
+    .detailImage {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .detailText {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .Container {
+        height: auto;
+    }
+    
+
 }

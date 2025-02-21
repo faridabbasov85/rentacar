@@ -22,13 +22,13 @@ export const productsSlice = createSlice({
         state.products = state.products.filter(item => item._id !== action.payload)
       })
       .addCase(getWishs.fulfilled, (state, action) => {
-        state.basket = action.payload
+        state.wishlist = action.payload
       })
       .addCase(postWishs.fulfilled, (state, action) => {
-        state.basket.push(action.payload)
+        state.wishlist.push(action.payload)
       })
       .addCase(deleteWishs.fulfilled, (state, action) => {
-        state.basket = state.basket.filter(item => item._id != action.payload)
+        state.wishlist = state.wishlist.filter(item => item._id != action.payload)
       })
   }
 })

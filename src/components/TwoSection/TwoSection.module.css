@@ -26,8 +26,9 @@
 }
 .cardsContainer {
     margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 20px;
     padding: 0 30px;
 }
@@ -38,6 +39,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 23%;
 }
 
 .cardTop img {
@@ -101,4 +103,45 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width:992px) and (min-width:768px) {
+
+    .card {
+        width: 30%;
+    }
+    .detailsRow {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+}
+
+@media screen and (max-width:767px) {
+
+    .card {
+        width: 40%;
+    }
+    .detailsRow {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+}
+@media screen and (max-width:576px) {
+
+    .text > h2 {
+        font-size: 20px;
+    }
+    .text > a {
+        font-size: 12px;
+    }
+
+    .card {
+        width: 100%;
+    }
+    .detailsRow {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 }

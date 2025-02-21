@@ -40,7 +40,7 @@ const Car = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  
     setLoading(true);
 
     const formData = new FormData(e.target);
@@ -57,10 +57,11 @@ const Car = () => {
       phoneNumber,
       age,
       days,
-      date,
+      date: date.toString(),
     };
 
     try {
+      console.log(data);
       await axios.post("http://localhost:5500/reservation", data);
       e.target.reset();
       navigate("/payment");

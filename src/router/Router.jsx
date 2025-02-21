@@ -15,6 +15,8 @@ import ProtectedRoute from "../components/ProtectedRouter/ProtectedRoute";
 import Notfound from "../pages/NotFound/NotFound";
 import Car from "../pages/car/Car";
 import Payment from "../pages/payment/Payment";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Reservation from "../pages/reservation/Reservation"; 
 const Router = () => {
   return (
     <div>
@@ -36,6 +38,8 @@ const Router = () => {
           <Route path="/cars" element={<Cars />} />
           <Route path="/cars/:id" element={<Car />} />
           <Route path="/payment" element={<Payment/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/reservation" element={<Reservation/>}/>
         </Routes>
       </BrowserRouter>
     </div>

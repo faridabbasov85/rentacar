@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import styles from "./Payment.module.css";
+import axios from "axios";
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -10,14 +11,35 @@ const Payment = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handlePayment = (e) => {
+  const handlePayment = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+  
+    const paymentData = {
+      cardNumber,
+      expiry,
+      cvv,
+      name,
+    };
+  
+    try {
+      const response = await axios.post("http://localhost:5500/payment", paymentData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      console.log("Server response:", response.data);
       alert("Ödəniş uğurla həyata keçirildi!");
       navigate("/cars");
-    }, 2000);
+    } catch (error) {
+      console.error("Payment error:", error.response?.data || error.message);
+      alert("Ödəniş zamanı xəta baş verdi!");
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
   return (
     <div className={styles.paymentContainer}>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import styles from "./Adminpanel.module.css";
-import Header from "../../components/Header/Header";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,7 +18,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 const Adminpanel = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("date"); // Default "Tarixə görə"
+  const [sortOrder, setSortOrder] = useState("date"); 
 
   // 
   const navigation = useNavigate();
@@ -37,7 +36,6 @@ const Adminpanel = () => {
     const tempV = !isDarkMode;
 
     setIsDarkMode(tempV);
-/*     document.body.classList.toggle("dark-mode"); */
   const rootElement = document.getElementById("root");
     if (tempV) {
       rootElement.setAttribute("data-theme", "dark");
@@ -66,6 +64,7 @@ const Adminpanel = () => {
         })
     : [];
 
+
   const formik = useFormik({
     initialValues: {},
     onSubmit: (values) => {
@@ -89,10 +88,10 @@ const Adminpanel = () => {
       <div className={styles.navbar}>
         <ul>
           <a onClick={() => navigation("/cars")} href="">Avto Park</a>
-          <a onClick={() => navigation("/services")} href="">
+          <a onClick={() => navigation("/dashboard")} href="">
             Dashboard
           </a>
-          <a onClick={() => navigation("/rules")} href="">
+          <a onClick={() => navigation("/reservation")} href="">
             Rezervasiya
           </a>
           <a onClick={() => navigation("/contact")} href="">
@@ -161,13 +160,13 @@ const Adminpanel = () => {
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="image">Maşının şəkili</label>
           <ImageUploader />
-          {/* <input
+          <input
             id="image"
             name="image"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.image}
-          /> */}
+          />
           <label htmlFor="brand">Marka</label>
           <input
             id="brand"
@@ -280,7 +279,7 @@ const Adminpanel = () => {
             {filteredProducts.map((car) => (
               <tr key={car._id}>
                 <td>
-                  <img src={car.image} alt={car.brand} />
+                <img src={car.image} />
                 </td>
                 <td>{car.brand}</td>
                 <td>{car.model}</td>

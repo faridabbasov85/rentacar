@@ -3,14 +3,14 @@ import styles from "./Wishlist.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getWishs, deleteWishs } from "../../redux/thunks/wish/wish";
 import { FaManatSign } from "react-icons/fa6";
-import { FaHeart } from "react-icons/fa";
 import Header from "../../components/Header/Header";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
+import { FaTrash } from "react-icons/fa";
 
 const Wishlist = () => {
   const [sortOrder, setSortOrder] = useState("date");
-  const [favorites, setFavorites] = useState();
+  const [favorites, setFavorites] = useState([]);
 
   const dispatch = useDispatch();
   const { user, loading } = useAuth();
@@ -32,7 +32,7 @@ const Wishlist = () => {
       if (!data) return;
 
       const carsId = data.map((fav) => fav.carId);
-      
+
       const cars = await Promise.all(
         carsId.map(async (carId) => {
           const { data } = await axios.get(
@@ -42,31 +42,31 @@ const Wishlist = () => {
         })
       );
 
-      const finalCars = cars.map(car => car[0]);
-      setFavorites(finalCars)
-      
+      const finalCars = cars.map((car) => car[0]);
+      setFavorites(finalCars);
     };
 
     fetchData();
   }, [user, loading]);
 
-  const toggleFavorite = (id) => {
-    setFavorites((prev) => {
-      const updatedFavorites = { ...prev, [id]: !prev[id] };
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      return updatedFavorites;
-    });
-  };
+  useEffect(() => {
+    if (favorites) {
+      const sortedFavorites = [...favorites].sort((a, b) => {
+        if (sortOrder === "asc") {
+          return a.pricePerDay - b.pricePerDay;
+        }
+        if (sortOrder === "desc") {
+          return b.pricePerDay - a.pricePerDay;
+        }
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      setFavorites(sortedFavorites);
+    }
+  }, [sortOrder]); 
 
-  const sortedWishes = wish.sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.pricePerDay - b.pricePerDay;
-    }
-    if (sortOrder === "desc") {
-      return b.pricePerDay - a.pricePerDay;
-    }
-    return new Date(b.createdAt) - new Date(a.createdAt);
-  });
+  const deleteItem = (_id) => {
+    dispatch(deleteWishs(_id));
+  };
 
   return (
     <div>
@@ -77,7 +77,7 @@ const Wishlist = () => {
         </div>
 
         <div className={styles.filter}>
-          <span>Toplam avtomobil:</span>
+          <span>Toplam avtomobil: {favorites.length}</span>
           <select
             onChange={(e) => setSortOrder(e.target.value)}
             value={sortOrder}
@@ -88,18 +88,12 @@ const Wishlist = () => {
           </select>
         </div>
 
-        <div>
+        <div className={styles.Container}>
           {favorites &&
             favorites.map((item) => (
               <div key={item._id} className={styles.card}>
                 <div className={styles.cardTop}>
                   <img src={item.image} alt={item.model} />
-                  <FaHeart
-                    className={`${styles.heartIcon} ${
-                      favorites[item._id] ? styles.filledHeart : ""
-                    }`}
-                    onClick={() => toggleFavorite(item._id)}
-                  />
                 </div>
                 <div className={styles.cardBottom}>
                   <div className={styles.left}>
@@ -132,7 +126,7 @@ const Wishlist = () => {
                     </p>
                   </div>
                   <div className={styles.right}>
-                    <a href={`details/${item._id}`}>Ətraflı</a>
+                    <FaTrash size={20} onClick={() => deleteItem(item._id)} />
                   </div>
                 </div>
               </div>

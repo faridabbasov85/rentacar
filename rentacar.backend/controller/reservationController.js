@@ -5,6 +5,6 @@ export const postReservation = async (req,res) => {
         await reservationModel.create(req.body);
         res.json(req.body)
     } catch (error) {
-        
+        console.error(error)
     }
 }

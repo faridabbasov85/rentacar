@@ -1,8 +1,8 @@
 import wishModel from "../model/wishModel.js";
 
 export const getWishs = async (req, res) => {
-  const { id } = req.params; // URL-dən user ID-ni alırıq
-  const wishs = await wishModel.find({ userId: id }); // Yalnız həmin user-in wishlistini gətiririk
+  const { id } = req.params; 
+  const wishs = await wishModel.find({ userId: id });
   res.json(wishs);
 };
 
