@@ -44,7 +44,7 @@ const Cars = () => {
   };
 
   const handleAddBrand = (newBrand) => {
-    setCars([...cars, { brand: newBrand }]); 
+    setCars([...cars, { brand: newBrand }]);
   };
 
   const handleSubmit = (e) => {
@@ -56,18 +56,18 @@ const Cars = () => {
     const filtered = cars
       .filter((car) => {
         return (
-          car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) && 
-          (brand ? car.brand === brand : true) && 
-          (transmission ? car.transmission === transmission : true) && 
-          (fuelType ? car.fuelType === fuelType : true) && 
+          car.brand.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
+          (brand ? car.brand === brand : true) &&
+          (transmission ? car.transmission === transmission : true) &&
+          (fuelType ? car.fuelType === fuelType : true) &&
           car.year >= minYear &&
-          car.year <= maxYear 
+          car.year <= maxYear
         );
       })
       .sort((a, b) => {
-        if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay; 
-        if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay; 
-        return new Date(b.createdAt) - new Date(a.createdAt); 
+        if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay;
+        if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay;
+        return new Date(b.createdAt) - new Date(a.createdAt);
       });
 
     setFilteredCars(filtered);
@@ -81,7 +81,7 @@ const Cars = () => {
       try {
         const response = await axios.get("http://localhost:5500/product");
         setCars(response.data);
-        setFilteredCars(response.data); 
+        setFilteredCars(response.data);
       } catch (error) {
         console.error("Xəta baş verdi:", error.message);
       }
@@ -103,7 +103,7 @@ const Cars = () => {
   }, [user, loading]);
 
   useEffect(() => {
-    applyFilters(); 
+    applyFilters();
   }, [
     searchTerm,
     brand,
@@ -115,31 +115,29 @@ const Cars = () => {
     cars,
   ]);
 
-
   const indexOfLastCar = currentPage * carsPerPage;
   const indexOfFirstCar = indexOfLastCar - carsPerPage;
-  const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar); 
+  const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const toggleFavorite = async (id) => {
     if (!user) {
-      navigate("/login"); 
+      navigate("/login");
       return;
     }
-  
+
     const liked = favorites.some((item) => item.carId === id);
     let updatedFavorites = [...favorites];
-  
-    if (liked) {
 
+    if (liked) {
       const _id = favorites.filter((item) => item.carId === id)[0]._id;
-  
+
       try {
         await axios.delete("http://localhost:5500/wishlist", {
-          data: { _id }
+          data: { _id },
         });
-  
+
         updatedFavorites = updatedFavorites.filter((i) => i.carId !== id);
       } catch (error) {
         console.error("Favoritdən silinmədi:", error);
@@ -150,16 +148,15 @@ const Cars = () => {
           userId: user.id,
           carId: id,
         });
-  
+
         updatedFavorites = [...updatedFavorites, res.data];
       } catch (error) {
         console.error("Favoritə əlavə edilmədi:", error);
       }
     }
-  
-    setFavorites(updatedFavorites); 
+
+    setFavorites(updatedFavorites);
   };
-  
 
   return (
     <div>
@@ -174,10 +171,14 @@ const Cars = () => {
               <label>Marka:</label>
               <select>
                 <option value="">Bütün markalar</option>
-  {[...new Set(cars.map(car => car.brand))].map((brand, index) => (
-    <option key={index} value={brand}>{brand}</option>
-  ))}
-</select>
+                {[...new Set(cars.map((car) => car.brand))].map(
+                  (brand, index) => (
+                    <option key={index} value={brand}>
+                      {brand}
+                    </option>
+                  )
+                )}
+              </select>
               <label>Buraxılış ili:</label>
               <div className={styles.yearRange}>
                 <input
@@ -242,7 +243,6 @@ const Cars = () => {
                             : ""
                         }`}
                         onClick={() => toggleFavorite(car._id)}
-                        
                       />
                     )}
                   </div>

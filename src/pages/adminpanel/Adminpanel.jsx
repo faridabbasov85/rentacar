@@ -18,12 +18,16 @@ import { BiMenuAltRight } from "react-icons/bi";
 const Adminpanel = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("date"); 
+  const [sortOrder, setSortOrder] = useState("date");
 
-  // 
+  //
   const navigation = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem("dark-mode") == null ? false : localStorage.getItem("dark-mode"));
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("dark-mode") == null
+      ? false
+      : localStorage.getItem("dark-mode")
+  );
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const { user, loading } = useAuth();
@@ -36,15 +40,15 @@ const Adminpanel = () => {
     const tempV = !isDarkMode;
 
     setIsDarkMode(tempV);
-  const rootElement = document.getElementById("root");
+    const rootElement = document.getElementById("root");
     if (tempV) {
       rootElement.setAttribute("data-theme", "dark");
     } else {
       rootElement.removeAttribute("data-theme");
     }
-  };  
+  };
 
-  // 
+  //
 
   useEffect(() => {
     dispatch(getProducts());
@@ -64,7 +68,6 @@ const Adminpanel = () => {
         })
     : [];
 
-
   const formik = useFormik({
     initialValues: {},
     onSubmit: (values) => {
@@ -80,82 +83,99 @@ const Adminpanel = () => {
 
   return (
     <div className={styles.Container}>
-     <div className={styles.Containe}>
+      <div className={styles.Containe}>
         <div className={styles.navLogo}>
-        <a onClick={() => navigation("/")} href="">111 Rent A Car</a>
-      </div>
-
-      <div className={styles.navbar}>
-        <ul>
-          <a onClick={() => navigation("/cars")} href="">Avto Park</a>
-          <a onClick={() => navigation("/dashboard")} href="">
-            Dashboard
+          <a onClick={() => navigation("/")} href="">
+            111 Rent A Car
           </a>
-          <a onClick={() => navigation("/reservation")} href="">
-            Rezervasiya
-          </a>
-          <a onClick={() => navigation("/contact")} href="">
-            Əlaqə
-          </a>
-        </ul>
-      </div>
-
-      <div className={styles.navActions}>
-        <div
-          className={styles.userIcon}
-          onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-        >
-          <FiUser size={24} />
-          {isUserMenuOpen && (user ? (
-            <div className={styles.userMenu}>
-              <a onClick={async () => {
-                await supabase.auth.signOut();
-              }}>Sign out</a>
-            </div>
-          ) : (
-            <div className={styles.userMenu}>
-              <a href="/login">Sign in</a>
-              <a href="/register">Sign up</a>
-            </div>
-          ))}
         </div>
 
-        <div className={styles.themeToggle} onClick={toggleDarkMode}>
-          {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+        <div className={styles.navbar}>
+          <ul>
+            <a onClick={() => navigation("/cars")} href="">
+              Avto Park
+            </a>
+            <a onClick={() => navigation("/dashboard")} href="">
+              Dashboard
+            </a>
+            <a onClick={() => navigation("/reservation")} href="">
+              Rezervasiya
+            </a>
+            <a onClick={() => navigation("/application")} href="">
+              Müraciətlər
+            </a>
+            <a onClick={() => navigation("/contact")} href="">
+              Əlaqə
+            </a>
+          </ul>
         </div>
 
-        <div className={styles.wishlist}>
-          <FiHeart onClick={() => navigation("/wishlist")} size={24} />
-        </div>
+        <div className={styles.navActions}>
+          <div
+            className={styles.userIcon}
+            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+          >
+            <FiUser size={24} />
+            {isUserMenuOpen &&
+              (user ? (
+                <div className={styles.userMenu}>
+                  <a
+                    onClick={async () => {
+                      await supabase.auth.signOut();
+                    }}
+                  >
+                    Sign out
+                  </a>
+                </div>
+              ) : (
+                <div className={styles.userMenu}>
+                  <a href="/login">Sign in</a>
+                  <a href="/register">Sign up</a>
+                </div>
+              ))}
+          </div>
 
-        <div className={styles.menu}>
-          <button onClick={toggleDrawer}>
-            <BiMenuAltRight size={35} />
-          </button>
-          <Drawer open={isOpen} onClose={toggleDrawer} direction="right">
-            <div className={styles.Menu}>
-              <div className={styles.themeToggleTwo} onClick={toggleDarkMode}>
-                {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+          <div className={styles.themeToggle} onClick={toggleDarkMode}>
+            {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+          </div>
+
+          <div className={styles.wishlist}>
+            <FiHeart onClick={() => navigation("/wishlist")} size={24} />
+          </div>
+
+          <div className={styles.menu}>
+            <button onClick={toggleDrawer}>
+              <BiMenuAltRight size={35} />
+            </button>
+            <Drawer open={isOpen} onClose={toggleDrawer} direction="right">
+              <div className={styles.Menu}>
+                <div className={styles.themeToggleTwo} onClick={toggleDarkMode}>
+                  {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+                </div>
+                <div className={styles.menuBar}>
+                  <ul>
+                    <a onClick={() => navigation("/cars")} href="">
+                      Avto Park
+                    </a>
+                    <a onClick={() => navigation("/services")} href="">
+                      Dashboard
+                    </a>
+                    <a onClick={() => navigation("/rules")} href="">
+                      Rezervasiya
+                    </a>
+                    <a onClick={() => navigation("/application")} href="">
+                      Müraciətlər
+                    </a>
+                    <a onClick={() => navigation("/contact")} href="">
+                      Əlaqə
+                    </a>
+                  </ul>
+                </div>
               </div>
-              <div className={styles.menuBar}>
-                <ul>
-                  <a onClick={() => navigation("/cars")} href="">Avto Park</a>
-                  <a onClick={() => navigation("/services")} href="">
-                  Dashboard
-                  </a>
-                  <a onClick={() => navigation("/rules")} href="">
-                  Rezervasiya
-                  </a>
-                  <a onClick={() => navigation("/contact")} href="">
-                    Əlaqə
-                  </a>
-                </ul>
-              </div>
-            </div>
-          </Drawer>
+            </Drawer>
+          </div>
         </div>
       </div>
-     </div>
       <div className={styles.Contain}>
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="image">Maşının şəkili</label>
@@ -279,7 +299,7 @@ const Adminpanel = () => {
             {filteredProducts.map((car) => (
               <tr key={car._id}>
                 <td>
-                <img src={car.image} />
+                  <img src={car.image} />
                 </td>
                 <td>{car.brand}</td>
                 <td>{car.model}</td>

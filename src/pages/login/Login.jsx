@@ -26,7 +26,7 @@ const Login = () => {
       }
     } else {
       if (data.user.email === "admin@admin") {
-        navigation("/admin-dashboard");
+        navigation("/admin");
       } else {
         navigation("/");
       }

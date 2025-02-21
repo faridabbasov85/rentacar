@@ -10,7 +10,9 @@ export const postWishs = async (req, res) => {
   try {
     const data = await wishModel.create(req.body);
     res.json(data);
-  } catch (error) {}
+  } catch (error) {
+    
+  }
 };
 
 export const deleteWishs = async (req, res) => { 

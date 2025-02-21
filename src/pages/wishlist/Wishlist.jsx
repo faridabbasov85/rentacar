@@ -25,6 +25,7 @@ const Wishlist = () => {
     if (loading) return;
 
     const fetchData = async () => {
+      
       const { data } = await axios.get(
         `http://localhost:5500/wishlist/${user.id}`
       );
@@ -64,9 +65,7 @@ const Wishlist = () => {
     }
   }, [sortOrder]); 
 
-  const deleteItem = (_id) => {
-    dispatch(deleteWishs(_id));
-  };
+ 
 
   return (
     <div>
@@ -126,7 +125,7 @@ const Wishlist = () => {
                     </p>
                   </div>
                   <div className={styles.right}>
-                    <FaTrash size={20} onClick={() => deleteItem(item._id)} />
+                    <FaTrash size={20} />
                   </div>
                 </div>
               </div>

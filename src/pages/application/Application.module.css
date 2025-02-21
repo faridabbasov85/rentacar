@@ -1,0 +1,47 @@
+.container {
+    padding: 30px;
+    background-color: #F1F6FD;
+    height: 100vh;
+  }
+  
+  .applicationsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .applicationCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:   white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .applicationDetails {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .applicationDetails > h3 {
+    color: #003271;
+  }
+
+  .applicationDetails > p {
+    color: #003271;
+  }
+  
+  .deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .deleteButton:hover {
+    transform: scale(1.2);
+  }
+  

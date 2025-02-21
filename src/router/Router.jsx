@@ -16,7 +16,8 @@ import Notfound from "../pages/NotFound/NotFound";
 import Car from "../pages/car/Car";
 import Payment from "../pages/payment/Payment";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Reservation from "../pages/reservation/Reservation"; 
+import Reservation from "../pages/reservation/Reservation";
+import Application from "../pages/application/Application";
 const Router = () => {
   return (
     <div>
@@ -30,16 +31,17 @@ const Router = () => {
           <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
-          <Route path='*' element={<Notfound/>}/>
+          <Route path="*" element={<Notfound />} />
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute adminOnly />}>
-            <Route path="/admin-dashboard" element={<Adminpanel />} />
+            <Route path="/admin" element={<Adminpanel />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/reservation" element={<Reservation />} />
+            <Route path="/application" element={<Application/>}/>
           </Route>
           <Route path="/cars" element={<Cars />} />
           <Route path="/cars/:id" element={<Car />} />
-          <Route path="/payment" element={<Payment/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/reservation" element={<Reservation/>}/>
         </Routes>
       </BrowserRouter>
     </div>

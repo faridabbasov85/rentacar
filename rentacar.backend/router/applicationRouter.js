@@ -1,8 +1,13 @@
 import express from "express";
-import { postApplication } from "../controller/applicationController.js";
+import { deleteApplication, getApplication, postApplication } from "../controller/applicationController.js";
 
 const router = express.Router();
 
-router.route("/").post(postApplication);
+router.route("/")
+.get(getApplication)
+.post(postApplication)
+
+router.route("/:id")
+  .delete(deleteApplication);
 
 export default router;
