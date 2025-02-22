@@ -41,8 +41,8 @@ h1 {
 }
 
 .detailImage img {
-        width: 500px;
-        height: 400px;
+    width: 500px;
+    height: 400px;
     object-fit: cover;
     border-radius: 10px;
     border-radius: 10px;
@@ -252,12 +252,16 @@ button:hover {
     }
     .Container {
         width: 100%;
-        
     }
 
     .detailImage {
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .image > img {
+        width: 200px;
+        height: 200px;
     }
 
     .detailText {

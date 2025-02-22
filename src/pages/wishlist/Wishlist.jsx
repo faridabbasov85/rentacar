@@ -23,28 +23,28 @@ const Wishlist = () => {
 
   useEffect(() => {
     if (loading) return;
+    if (!user) return;
 
     const fetchData = async () => {
-      
-      const { data } = await axios.get(
+      const { data: favoritedIDS } = await axios.get(
         `http://localhost:5500/wishlist/${user.id}`
       );
 
-      if (!data) return;
+      if (!favoritedIDS) return;
 
-      const carsId = data.map((fav) => fav.carId);
+      const carsId = favoritedIDS.map((fav) => fav.carId);
 
       const cars = await Promise.all(
-        carsId.map(async (carId) => {
+        carsId.map(async (carId,i) => {
           const { data } = await axios.get(
             `http://localhost:5500/product/${carId}`
           );
-          return data;
+          return {...data[0],favoriteID: favoritedIDS[i]._id};
         })
       );
 
-      const finalCars = cars.map((car) => car[0]);
-      setFavorites(finalCars);
+      const filteredFinalCars = cars.filter((car) => car != undefined);
+      setFavorites(filteredFinalCars);
     };
 
     fetchData();
@@ -63,9 +63,18 @@ const Wishlist = () => {
       });
       setFavorites(sortedFavorites);
     }
-  }, [sortOrder]); 
+  }, [sortOrder]);
 
- 
+  const handleDelete = async (id) => {
+    await axios
+      .delete(`http://localhost:5500/wishlist/${id}`)
+      .then((response) => {
+        setFavorites((prev) => prev.filter((wish) => wish.favoriteID !== id));
+      })
+      .catch((error) => {
+        console.error("Silmə xətası:", error);
+      });
+  };
 
   return (
     <div>
@@ -88,6 +97,8 @@ const Wishlist = () => {
         </div>
 
         <div className={styles.Container}>
+          {!loading && !user && <p>Please Sign in.</p>}
+
           {favorites &&
             favorites.map((item) => (
               <div key={item._id} className={styles.card}>
@@ -125,7 +136,7 @@ const Wishlist = () => {
                     </p>
                   </div>
                   <div className={styles.right}>
-                    <FaTrash size={20} />
+                    <FaTrash size={20} onClick={() => handleDelete(item.favoriteID)} />
                   </div>
                 </div>
               </div>

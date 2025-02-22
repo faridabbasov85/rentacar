@@ -83,7 +83,7 @@ const Car = () => {
 
         <div className={styles.Contain}>
           <div className={styles.detailImage}>
-            <div>
+            <div className={styles.image}>
               <img src={car.image} alt={car.brand} />
             </div>
           </div>

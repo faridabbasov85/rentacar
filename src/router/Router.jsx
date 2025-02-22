@@ -35,11 +35,11 @@ const Router = () => {
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute adminOnly />}>
             <Route path="/admin" element={<Adminpanel />} />
-            <Route path="/payment" element={<Payment />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/reservation" element={<Reservation />} />
             <Route path="/application" element={<Application/>}/>
           </Route>
+            <Route path="/payment" element={<Payment />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/cars/:id" element={<Car />} />
         </Routes>

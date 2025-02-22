@@ -7,10 +7,8 @@ import {
 
 const router = express.Router();
 
-router.route('/')
-.post(postWishs)
-.delete(deleteWishs)
+router.route("/").post(postWishs);
+router.delete("/:id", deleteWishs);
+router.get("/:id", getWishs);
 
-router.get('/:id',getWishs);
-
-export default router
+export default router;

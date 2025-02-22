@@ -160,7 +160,7 @@ const Adminpanel = () => {
                     <a onClick={() => navigation("/services")} href="">
                       Dashboard
                     </a>
-                    <a onClick={() => navigation("/rules")} href="">
+                    <a onClick={() => navigation("/reservation")} href="">
                       Rezervasiya
                     </a>
                     <a onClick={() => navigation("/application")} href="">
@@ -285,32 +285,27 @@ const Adminpanel = () => {
             <option value="desc">Əvvəlcə bahalı</option>
           </select>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Maşının şəkili</th>
-              <th>Marka</th>
-              <th>Model</th>
-              <th>Günlük icarə qiyməti</th>
-              <th>Sil</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map((car) => (
-              <tr key={car._id}>
-                <td>
-                  <img src={car.image} />
-                </td>
-                <td>{car.brand}</td>
-                <td>{car.model}</td>
-                <td>{car.pricePerDay} Manat</td>
-                <td>
-                  <button onClick={() => deleteItem(car._id)}>Sil</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className={styles.CardContainer}>
+        {filteredProducts.map((car) => (
+          <div key={car._id} className={styles.Card}>
+            <div className={styles.CardImage}>
+              <img src={car.image} alt={car.brand} />
+            </div>
+            <div className={styles.CardDivider}></div>
+            <div className={styles.CardDetails}>
+              <p className={styles.Brand}>{car.brand}</p>
+              <p className={styles.Model}>{car.model}</p>
+              <p className={styles.Price}>{car.pricePerDay} Manat</p>
+              <button
+                className={styles.DeleteButton}
+                onClick={() => deleteItem(car._id)}
+              >
+                Sil
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
       </div>
     </div>
   );

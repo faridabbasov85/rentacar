@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+
 .Contain {
   width: 100vw;
   min-height: 100vh;
@@ -8,9 +10,10 @@
   background-color: #F1F6FD;
   padding: 0 30px;
   padding-top: 150px;
+  font-family: "Nunito", sans-serif;
 }
 
-.Contain > form {
+.Contain>form {
   width: 100%;
   max-width: 1000px;
   max-height: 80vh;
@@ -57,52 +60,6 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #00214D;
-}
-
-
-table {
-  width: 90%;
-  margin-top: 30px;
-  border-collapse: collapse;
-  background-color: #E5EAF2;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 50, 113, 0.2);
-}
-
-th,
-td {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid #003271;
-}
-
-th {
-  background-color: #003271;
-  color: white;
-}
-
-
-td img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
-button {
-  background-color: #ff4d4d;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #cc0000;
 }
 
 .FilterSortSection {
@@ -290,6 +247,58 @@ button:hover {
   background-color: transparent;
 }
 
+.CardContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 4px;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Card {
+  width: 45%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.CardImage>img {
+  width: 200px;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.CardDivider {
+  height: 1px;
+  background: #ddd;
+  margin: 10px 0;
+}
+
+.CardDetails {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Brand,
+.Model,
+.Price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #003271;
+}
+
+
+
+.DeleteButton {
+  padding: 10px;
+  border-radius: 10px;
+}
 
 @media screen and (max-width:1200px) {
 
@@ -308,22 +317,10 @@ button:hover {
 }
 
 
-
-
 @media (max-width: 768px) {
   form {
     grid-template-columns: 1fr;
     width: 90%;
-  }
-
-  table {
-    font-size: 14px;
-    width: 100%;
-  }
-
-  td img {
-    width: 180px;
-    height: 130px;
   }
 
   .FilterSortSection {
@@ -360,46 +357,82 @@ button:hover {
     width: 28px;
     height: 28px;
   }
+
+  .Card {
+    width: 100%;
+  }
 }
 
+@media screen and (max-width:576px) {
 
 
-.upload-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  text-align: center;
-}
 
-.upload-box {
-  border: 2px dashed #ccc;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-}
 
-#drop-area {
-  cursor: pointer;
-}
+  .Card {
+    width: 100%;
+  }
 
-#drop-area p {
-  margin: 0;
-  color: #666;
-}
+  .Brand,
+  .Model,
+  .Price {
+    font-size: 13px;
+    font-weight: bold;
+    color: #003271;
+  }
 
-#browse-link {
-  color: #007bff;
-  text-decoration: underline;
-  cursor: pointer;
-}
+  .DeleteButton {
+    font-size: 14px;
+    padding: 5px -5px;
+  }
 
-#preview {
-  margin-top: 20px;
-}
+  .CardImage>img {
+    width: 130px;
+  }
+  .CardDetails{
+    gap: 10px;
+  }
 
-#preview img {
-  max-width: 100%;
-  border-radius: 8px;
+  .FilterSortSection {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #E5EAF2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 50, 113, 0.2);
+  }
+  
+  .FilterSortSection input {
+    padding: 5px;
+    color: #003271;
+    font-size: 13px;
+  }
+  
+  .FilterSortSection select {
+    padding: 5px;
+    border: 1px solid #003271;
+    font-size: 13px;
+  }
+
+  .Contain>form {
+
+    gap: 20px;
+    padding: 25px;
+    padding-top: 600px;
+  }
+  
+  
+  
+  label {
+    font-size: 13px;
+  }
+  
+  
+  button[type="submit"] {
+    padding: 12px;
+    font-size: 16px;
+  }
+
 }
