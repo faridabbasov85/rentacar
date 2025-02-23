@@ -15,7 +15,6 @@ import ProtectedRoute from "../components/ProtectedRouter/ProtectedRoute";
 import Notfound from "../pages/NotFound/NotFound";
 import Car from "../pages/car/Car";
 import Payment from "../pages/payment/Payment";
-import Dashboard from "../pages/dashboard/Dashboard";
 import Reservation from "../pages/reservation/Reservation";
 import Application from "../pages/application/Application";
 const Router = () => {
@@ -35,11 +34,10 @@ const Router = () => {
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute adminOnly />}>
             <Route path="/admin" element={<Adminpanel />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/reservation" element={<Reservation />} />
-            <Route path="/application" element={<Application/>}/>
+            <Route path="/application" element={<Application />} />
           </Route>
-            <Route path="/payment" element={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/cars/:id" element={<Car />} />
         </Routes>

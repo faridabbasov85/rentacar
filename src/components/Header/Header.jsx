@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import img from "../../pages/photo/logo.png";
 import Drawer from "react-modern-drawer";
@@ -23,16 +23,22 @@ const Header = () => {
 
   const toggleDarkMode = () => {
     const tempV = !isDarkMode;
-
     setIsDarkMode(tempV);
-/*     document.body.classList.toggle("dark-mode"); */
-  const rootElement = document.getElementById("root");
+ 
+    localStorage.setItem("dark-mode", tempV);
+  
+    const rootElement = document.getElementById("root");
     if (tempV) {
       rootElement.setAttribute("data-theme", "dark");
     } else {
       rootElement.removeAttribute("data-theme");
     }
   };
+  useEffect(() => {
+    if (localStorage.getItem("dark-mode") === "true") {
+      document.getElementById("root").setAttribute("data-theme", "dark");
+    }
+  }, []);
 
   return (
     <div className={styles.Contain}>

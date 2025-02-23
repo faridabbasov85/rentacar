@@ -19,7 +19,7 @@
     width: 100%;
 }
 
-.navLogo> a{
+.navLogo>a {
     text-decoration: none;
     color: var(--navLogo-link-color) !important;
     font-size: 35px;
@@ -87,8 +87,7 @@
 
 .themeToggleTwo svg {
     cursor: pointer;
-    color: #003271;
-    background-color: #32A4F6;
+    color: var(--navLogo-link-color);
     border-radius: 10px;
     width: 30px;
     height: 30px;
@@ -117,6 +116,8 @@
     flex-direction: column;
     align-items: flex-start;
     padding-left: 30px;
+    background-color: var(--contain-bg-color);
+    height: 100vh;
     padding-top: 30px;
 }
 
@@ -131,7 +132,7 @@
 }
 
 .menuBar>ul>a {
-    color: #003271;
+    color: var(--navLogo-link-color);
     text-decoration: none;
     transition: all ease-in-out 0.5s;
 }
@@ -144,12 +145,12 @@
     color: #003271;
 }
 
-.menu > button {
-   background-color: transparent;
-   padding: 5px;
+.menu>button {
+    background-color: transparent;
+    padding: 5px;
 }
 
-.menu button:hover{
+.menu button:hover {
     background-color: transparent;
 }
 
@@ -200,7 +201,7 @@
 @media screen and (max-width:576px) {
 
 
-       .themeToggle svg,
+    .themeToggle svg,
     .wishlist svg,
     .userIcon svg {
         width: 15px;

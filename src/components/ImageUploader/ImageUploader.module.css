@@ -1,4 +1,4 @@
-/* Əsas konteyner */
+
 .upload-container {
   max-width: 500px;
   margin: 50px auto;
@@ -10,7 +10,7 @@
   font-family: 'Arial', sans-serif;
 }
 
-/* Başlıq */
+
 .upload-title {
   font-size: 26px;
   font-weight: 600;
@@ -18,7 +18,7 @@
   margin-bottom: 25px;
 }
 
-/* Drag & Drop Ərazisi */
+
 .drop-area {
   border: 2px dashed #3498db;
   border-radius: 12px;
@@ -33,43 +33,18 @@
   border-color: #2980b9;
 }
 
-/* Şəkil yükləmə mesajı */
+
 .drop-area p {
   font-size: 16px;
   color: #7f8c8d;
   margin: 0;
 }
 
-/* "Seçin" linki */
+
 .browse-link {
   color: #3498db;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s ease;
-}
-
-.browse-link:hover {
-  color: #2980b9;
-}
-
-/* Şəkil önizləməsi */
-.preview-image {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-top: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Xəta mesajı */
-.error-message {
-  color: #e74c3c;
-  font-size: 14px;
-  margin-top: 15px;
-  font-weight: 500;
-}
-
-/* Fayl inputu (gizli) */
-input[type="file"] {
-  display: none;
 }

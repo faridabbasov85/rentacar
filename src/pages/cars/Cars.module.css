@@ -187,6 +187,10 @@ button[type="submit"]:hover {
     padding: 20px 30px;
 }
 
+.pagination > span {
+    color: var(--title-text-color) ;
+}
+
 .pagination ul {
     display: flex;
     list-style: none;

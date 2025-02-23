@@ -64,7 +64,7 @@ const Adminpanel = () => {
         .sort((a, b) => {
           if (sortOrder === "asc") return a.pricePerDay - b.pricePerDay;
           if (sortOrder === "desc") return b.pricePerDay - a.pricePerDay;
-          return new Date(b.createdAt) - new Date(a.createdAt); // Default tarixə görə sıralama
+          return new Date(b.createdAt) - new Date(a.createdAt); 
         })
     : [];
 
@@ -94,9 +94,6 @@ const Adminpanel = () => {
           <ul>
             <a onClick={() => navigation("/cars")} href="">
               Avto Park
-            </a>
-            <a onClick={() => navigation("/dashboard")} href="">
-              Dashboard
             </a>
             <a onClick={() => navigation("/reservation")} href="">
               Rezervasiya
@@ -157,9 +154,6 @@ const Adminpanel = () => {
                     <a onClick={() => navigation("/cars")} href="">
                       Avto Park
                     </a>
-                    <a onClick={() => navigation("/services")} href="">
-                      Dashboard
-                    </a>
                     <a onClick={() => navigation("/reservation")} href="">
                       Rezervasiya
                     </a>
@@ -179,7 +173,7 @@ const Adminpanel = () => {
       <div className={styles.Contain}>
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="image">Maşının şəkili</label>
-          <ImageUploader />
+          <ImageUploader  className={styles.imggg}/>
           <input
             id="image"
             name="image"
@@ -259,6 +253,7 @@ const Adminpanel = () => {
             onChange={formik.handleChange}
             value={formik.values.transmission}
           />
+          
           <label htmlFor="pricePerDay">Günlük icarə qiyməti</label>
           <input
             id="pricePerDay"
@@ -295,6 +290,7 @@ const Adminpanel = () => {
             <div className={styles.CardDetails}>
               <p className={styles.Brand}>{car.brand}</p>
               <p className={styles.Model}>{car.model}</p>
+              <p></p>
               <p className={styles.Price}>{car.pricePerDay} Manat</p>
               <button
                 className={styles.DeleteButton}

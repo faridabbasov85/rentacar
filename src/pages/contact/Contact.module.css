@@ -2,7 +2,7 @@
 
 .container {
     font-family: "Nunito", sans-serif;
-    background-color: #EDF1F6;
+    background-color: var(--contain-bg-color);
     min-height: 100vh;
 }
 
@@ -14,7 +14,7 @@
 .Head>h1 {
     font-size: 36px;
     font-weight: 400;
-    color: #373752;
+    color: var(--faq-head-color);
 }
 
 .contact {
@@ -75,9 +75,13 @@
     width: 40%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #E5EAF2;
+    background-color: var(--body-bg-color);
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forms > form > h3 {
+    color: var(--faq-title-color);
 }
 
 .forms form {
@@ -110,6 +114,10 @@
     border-radius: 20px;
 }
 
+.inp > label {
+    color: var(--navLogo-link-color);
+}
+
 .forms button {
     padding: 10px;
     background-color: #003271;
@@ -125,11 +133,15 @@
 }
 
 .map {
-    background-color: white;
+    background-color: var(--body-bg-color);
     padding: 20px;
     border-radius: 20px;
     width: 60%;
     height: 100%;
+}
+
+.map > h3 {
+    color: var(--faq-title-color);
 }
 
 @media screen and (max-width:1200px) and (min-width:993px) {

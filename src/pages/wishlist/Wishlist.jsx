@@ -77,7 +77,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div>
+    <div className={styles.Main}>
       <Header />
       <div className={styles.contain}>
         <div className={styles.title}>

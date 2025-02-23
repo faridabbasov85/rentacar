@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import logo from "../../pages/photo/logo.png";
 import { FaInstagram } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -54,7 +53,7 @@ const Footer = () => {
         </div>
         <div className={styles.support}>
           <h4>Dəstək</h4>
-          {/* <a href="">Məlumat mərkəzi</a> */}
+          
           <a onClick={goFaq} href="">
             Sual-cavab
           </a>

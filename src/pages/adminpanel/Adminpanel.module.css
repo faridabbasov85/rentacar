@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #F1F6FD;
+  background-color:  var(--contain-bg-color);
   padding: 0 30px;
   padding-top: 150px;
   font-family: "Nunito", sans-serif;
@@ -21,9 +21,9 @@
   flex-direction: column;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  background-color: #E5EAF2;
+  background-color: var(--body-bg-color);
   padding: 25px;
-  padding-top: 600px;
+  padding-top: 630px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 50, 113, 0.2);
   overflow-y: auto;
@@ -34,8 +34,10 @@
 label {
   font-size: 16px;
   font-weight: bold;
-  color: #003271;
+  color: var(--navLogo-link-color);
 }
+
+
 
 input {
   width: 100%;
@@ -69,7 +71,7 @@ button[type="submit"]:hover {
   align-items: center;
   margin-top: 20px;
   padding: 15px;
-  background-color: #E5EAF2;
+  background-color: var(--body-bg-color);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 50, 113, 0.2);
 }
@@ -182,8 +184,7 @@ button[type="submit"]:hover {
 
 .themeToggleTwo svg {
   cursor: pointer;
-  color: #003271;
-  background-color: #32A4F6;
+  color: var(--navLogo-link-color);
   border-radius: 10px;
   width: 30px;
   height: 30px;
@@ -211,6 +212,8 @@ button[type="submit"]:hover {
   gap: 30px;
   flex-direction: column;
   align-items: flex-start;
+  height: 100vh;
+  background-color:var(--contain-bg-color)   ;
   padding-left: 30px;
   padding-top: 30px;
 }
@@ -226,7 +229,7 @@ button[type="submit"]:hover {
 }
 
 .menuBar>ul>a {
-  color: #003271;
+  color: var(--navLogo-link-color);
   text-decoration: none;
   transition: all ease-in-out 0.5s;
 }
@@ -262,6 +265,7 @@ button[type="submit"]:hover {
   justify-content: space-evenly;
   align-items: center;
   padding: 15px;
+  background-color: var(--body-bg-color);
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -290,7 +294,7 @@ button[type="submit"]:hover {
 .Price {
   font-size: 16px;
   font-weight: bold;
-  color: #003271;
+  color: var(--navLogo-link-color);
 }
 
 
@@ -312,6 +316,10 @@ button[type="submit"]:hover {
 
   .menu {
     display: block;
+  }
+
+  .menu button {
+    padding: 2px;
   }
 
 }
@@ -361,12 +369,13 @@ button[type="submit"]:hover {
   .Card {
     width: 100%;
   }
+
+  .menu button {
+    padding: 2px;
+  }
 }
 
 @media screen and (max-width:576px) {
-
-
-
 
   .Card {
     width: 100%;
@@ -424,7 +433,6 @@ button[type="submit"]:hover {
   }
   
   
-  
   label {
     font-size: 13px;
   }
@@ -434,5 +442,19 @@ button[type="submit"]:hover {
     padding: 12px;
     font-size: 16px;
   }
+  .menu svg {
+    width: 22px;
+    height: 22px;
+  }
 
+  .themeToggle svg,
+  .wishlist svg,
+  .userIcon svg {
+      width: 15px;
+      height: 15px;
+  }
+
+  .menu button {
+    padding: 2px;
+  }
 }

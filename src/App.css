@@ -12,9 +12,15 @@
     --card-top-bg-color:#fff;
     --card-bg-color:#f9f9f9;
     --card-bottom-bg-color:#eee;
+    --faq-title-color:black;
+    --faq-head-color:#353551;
+    --detail-bg-color:#F8F8F8;
 }
 
 [data-theme="dark"] {
+    --detail-bg-color:rgb(26,26,26);
+    --faq-head-color:white;
+    --faq-title-color:white;
     --body-bg-color: rgb(26, 26, 26);
     --title-text-color: white;
     --header-bg-color:rgb(26, 26, 26);
@@ -32,6 +38,18 @@
 
 #root {
     background-color: var(--body-bg-color) ;
+}
+
+.detatail {
+
+    background-color:  var(--detail-bg-color);
+}
+
+.faq > head {
+    color: var(--faq-head-color);
+}
+.faq > button {
+    color: var(--faq-title-color);
 }
 
 .card-top{

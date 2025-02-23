@@ -3,7 +3,7 @@
 .Faq {
     font-family: "Nunito", sans-serif;
     min-height: 100vh;
-    background-color: #EDF1F6;
+    background-color: var(--contain-bg-color);
     
 }
 
@@ -21,7 +21,7 @@
 }
 
 .Head h1 {
-    color: #353551;
+    color: var(--faq-head-color);
     font-size: 32px;
     font-weight: 600;
     text-align: left;
@@ -30,7 +30,7 @@
 .Head p {
     color: #555;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: bold;
     text-align: left;
 }
 
@@ -51,11 +51,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    border: none;
+    background-color:var(--body-bg-color);
+    border: 1px solid transparent;
     font-size: 16px;
     padding: 15px 20px;
-    color: black;
+    color: var(--faq-title-color);
     border-radius: 10px;
     font-family: "Nunito", sans-serif;
     width: 100%;
@@ -66,7 +66,6 @@
 }
 
 .question button:hover {
-    background-color: #f0f8ff;
     border: 1px solid #0092ec;
 }
 

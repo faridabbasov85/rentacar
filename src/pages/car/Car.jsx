@@ -75,7 +75,7 @@ const Car = () => {
     <div className={styles.Container}>
       <Header />
       <div className={styles.main}>
-        <div>
+        <div className={styles.Head}>
           <h1>
             {car.brand} {car.model}
           </h1>
@@ -89,7 +89,7 @@ const Car = () => {
           </div>
 
           <div className={styles.detailText}>
-            <div>
+            <div className={styles.mainn}>
               <span>
                 {car.pricePerDay}
                 <FaManatSign />/ Günlük
