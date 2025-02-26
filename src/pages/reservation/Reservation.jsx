@@ -9,7 +9,7 @@ const Reservation = () => {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5500/reservation");
+        const { data } = await axios.get("https://rentacar-r44c.vercel.app/reservation");
         setReservations(data);
         setLoading(false);
       } catch (error) {
@@ -24,7 +24,7 @@ const Reservation = () => {
   // Rezervasiyanı təsdiqləyən funksiya
   const handleConfirm = async (id) => {
     try {
-      await axios.delete(`http://localhost:5500/reservation/${id}`);
+      await axios.delete(`https://rentacar-r44c.vercel.app/reservation/${id}`);
       setReservations(reservations.filter((reservation) => reservation._id !== id));
     } catch (error) {
       console.error("Error deleting reservation:", error);
@@ -33,7 +33,7 @@ const Reservation = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5500/reservation/${id}`);
+      await axios.delete(`https://rentacar-r44c.vercel.app/reservation/${id}`);
       setReservations(reservations.filter((reservation) => reservation._id !== id));
     } catch (error) {
       console.error("Error deleting reservation:", error);
