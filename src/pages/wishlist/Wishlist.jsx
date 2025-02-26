@@ -27,7 +27,7 @@ const Wishlist = () => {
 
     const fetchData = async () => {
       const { data: favoritedIDS } = await axios.get(
-        `http://localhost:5500/wishlist/${user.id}`
+        `https://rentacar-r44c.vercel.app/wishlist/${user.id}`
       );
 
       if (!favoritedIDS) return;
@@ -37,7 +37,7 @@ const Wishlist = () => {
       const cars = await Promise.all(
         carsId.map(async (carId,i) => {
           const { data } = await axios.get(
-            `http://localhost:5500/product/${carId}`
+            `https://rentacar-r44c.vercel.app/product/${carId}`
           );
           return {...data[0],favoriteID: favoritedIDS[i]._id};
         })
@@ -67,7 +67,7 @@ const Wishlist = () => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:5500/wishlist/${id}`)
+      .delete(`https://rentacar-r44c.vercel.app/wishlist/${id}`)
       .then((response) => {
         setFavorites((prev) => prev.filter((wish) => wish.favoriteID !== id));
       })
