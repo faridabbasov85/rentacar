@@ -31,7 +31,7 @@ const Contact = () => {
       message
     }
 
-    await axios.post("http://localhost:5500/applications",data);
+    await axios.post("https://rentacar-r44c.vercel.app/applications",data);
 
     e.target.reset();
   };
