@@ -8,7 +8,7 @@ const Application = () => {
 
   useEffect(() => {
     const fetchApplications = async () => {
-      const response = await axios.get('http://localhost:5500/applications');
+      const response = await axios.get('https://rentacar-r44c.vercel.app/applications');
       setApplications(response.data); 
     };
     fetchApplications();
@@ -17,7 +17,7 @@ const Application = () => {
   const handleDelete = (id) => {
     console.log("Silinəcək ID:", id);
     axios
-      .delete(`http://localhost:5500/applications/${id}`)
+      .delete(`https://rentacar-r44c.vercel.app/applications/${id}`)
       .then((response) => {
         console.log(response.data);
         setApplications((prev) => prev.filter((app) => app._id !== id));
