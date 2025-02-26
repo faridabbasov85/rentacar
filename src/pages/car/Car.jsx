@@ -15,7 +15,7 @@ const Car = () => {
   useEffect(() => {
     const fetchCar = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5500/product/${id}`);
+        const { data } = await axios.get(`https://rentacar-r44c.vercel.app/product/${id}`);
         if (data.length > 0) {
           setCar(data[0]);
         }
@@ -62,7 +62,7 @@ const Car = () => {
 
     try {
       console.log(data);
-      await axios.post("http://localhost:5500/reservation", data);
+      await axios.post("https://rentacar-r44c.vercel.app/reservation", data);
       e.target.reset();
       navigate("/payment");
     } catch (error) {
