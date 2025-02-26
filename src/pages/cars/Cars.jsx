@@ -79,7 +79,7 @@ const Cars = () => {
 
     const fetchCars = async () => {
       try {
-        const response = await axios.get("http://localhost:5500/product");
+        const response = await axios.get("https://rentacar-r44c.vercel.app/product");
         setCars(response.data);
         setFilteredCars(response.data);
       } catch (error) {
@@ -94,7 +94,7 @@ const Cars = () => {
 
     if (user) {
       axios
-        .get(`http://localhost:5500/wishlist/${user.id}`)
+        .get(`https://rentacar-r44c.vercel.app/wishlist/${user.id}`)
         .then((response) => {
           setFavorites(response.data);
         })
@@ -144,7 +144,7 @@ const Cars = () => {
       }
     } else {
       try {
-        const res = await axios.post("http://localhost:5500/wishlist", {
+        const res = await axios.post("https://rentacar-r44c.vercel.app/wishlist", {
           userId: user.id,
           carId: id,
         });
