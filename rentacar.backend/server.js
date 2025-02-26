@@ -22,6 +22,12 @@ app.use('/applications', applicationRouter)
 app.use('/reservation', reservationRouter)
 app.use('/payment',paymentRouter)
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome",
+  });
+});
+
 app.listen(5500, () => {
     console.log("backend running");
 })
