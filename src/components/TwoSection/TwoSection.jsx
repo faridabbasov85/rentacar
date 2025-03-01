@@ -11,7 +11,7 @@ const TwoSection = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get("http://localhost:5500/product");
+        const response = await axios.get("https://rentacar-r44c.vercel.app/product");
         setCars(response.data); 
       } catch (error) {
         console.error("Xəta baş verdi:", error.message);
